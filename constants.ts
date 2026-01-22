@@ -81,42 +81,42 @@ export const WORK_ITEMS: WorkItem[] = [
     id: 'reminder-app',
     title: 'Efficient Daily Experiences',
     category: 'Reminder App',
-    image: '/Personal/tumbnail/1.png',
+    image: '/thumbnail/1.png',
     year: '2025'
   },
   {
     id: 'calendar-app',
     title: 'Shared Schedule Experience',
     category: 'Calendar App',
-    image: '/Personal/tumbnail/2.png',
+    image: '/thumbnail/2.png',
     year: '2025'
   },
   {
     id: 'widget-optimization',
     title: 'Productive Widget Management',
     category: 'Widget Optimization',
-    image: '/Personal/tumbnail/3.png',
+    image: '/thumbnail/3.png',
     year: '2024'
   },
   {
     id: 'clock-app',
     title: 'Aesthetic Time Management',
     category: 'Clock App',
-    image: '/Personal/tumbnail/4.png',
+    image: '/thumbnail/4.png',
     year: '2024'
   },
   {
     id: 'creative-computing',
     title: 'Social Critique Computing',
     category: 'Creative Computing Project',
-    image: '/Personal/tumbnail/5.png',
+    image: '/thumbnail/5.png',
     year: '2025'
   },
   {
     id: 'wearable-computing',
     title: 'Universal Wearable Product',
     category: 'Wearable Computing Project',
-    image: '/Personal/tumbnail/6.png',
+    image: '/thumbnail/6.png',
     year: '2023'
   }
 ];
