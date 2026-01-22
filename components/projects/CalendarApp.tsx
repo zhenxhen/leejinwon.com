@@ -29,7 +29,7 @@ export const CalendarApp: React.FC = () => {
             {/* Main Image */}
             <div className="w-full max-w-7xl mx-auto aspect-video bg-gray-100 mb-16 overflow-hidden">
                 {/* Placeholder for now, can use the thumbnail or a detail image */}
-                <img src="/Personal/tumbnail/1.png" alt="Efficient Daily Experiences" className="w-full h-full object-cover" />
+                <img src="/thumbnail/2.png" alt="Efficient Daily Experiences" className="w-full h-full object-cover" />
             </div>
 
             {/* Introduction */}
