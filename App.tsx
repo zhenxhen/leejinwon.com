@@ -119,7 +119,7 @@ const MainLayout: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Router basename="/Personal">
+    <Router basename="/leejinwon.com">
       <MainLayout />
     </Router>
   );
