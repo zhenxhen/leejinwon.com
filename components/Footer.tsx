@@ -4,7 +4,7 @@ export const Footer: React.FC = () => {
     return (
         <>
             {/* Closing Statement */}
-            <section className="pb-20 border-t border-gray-100 pt-16 -mx-8 px-8">
+            <section className="mt-32 pb-20 border-t border-gray-100 pt-16 -mx-8 px-8">
                 <h2 className="title leading-tight tracking-tight">
                     Human come before technology,<br />
                     building sustainable systems and platforms together.

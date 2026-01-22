@@ -1,4 +1,5 @@
 import { WORK_ITEMS } from '../constants';
+import { Footer } from './Footer';
 
 interface ProjectListProps {
     onProjectClick?: (id: string) => void;
@@ -34,6 +35,8 @@ export const ProjectList: React.FC<ProjectListProps> = ({ onProjectClick }) => {
                     </div>
                 ))}
             </div>
+            {/* Footer */}
+            <Footer />
         </div>
     );
 };
