@@ -282,13 +282,13 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
  // Initial set
  handleResize();
 
- // Camera Entry Animation
- if (controlsRef.current) {
- controlsRef.current.setLookAt(0, 0, 50, 0, 0, 0, false);
- setTimeout(() => {
- controlsRef.current?.setLookAt(-20, 20, 40, 0, 0, 0, true);
- }, 50);
- }
+  // Camera Entry Animation
+  if (controlsRef.current) {
+  controlsRef.current.setLookAt(0, 0, 50, 0, 0, 0, false);
+  setTimeout(() => {
+  controlsRef.current?.setLookAt(-20, 20, 40, 0, 0, 0, true);
+  }, 10);
+  }
 
  window.addEventListener('resize', handleResize);
  return () => window.removeEventListener('resize', handleResize);
@@ -365,7 +365,7 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
  dollySpeed={0} // Disable Scroll Zoom via speed
  mouseButtons={{ left: 1, middle: 0, right: 0, wheel: 0 }} // Disable wheel capture to allow page scroll
  touches={{ one: 1, two: 0, three: 0 }} // Enable touch rotation (1=ROTATE) to match mouse
- smoothTime={1} // Slower animation
+  smoothTime={0.4} // Improved responsiveness while maintaining smoothness
  enabled={true}
  />
 

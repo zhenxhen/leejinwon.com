@@ -142,12 +142,12 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({
  obstacleRects,
 }) => {
  const [isVisible, setIsVisible] = useState(false);
- const { progress, active } = useProgress();
+  const { progress } = useProgress();
  const [hasLoaded, setHasLoaded] = useState(false);
 
  useEffect(() => {
- if (progress === 100 && !active) setHasLoaded(true);
- }, [progress, active]);
+  if (progress === 100) setHasLoaded(true);
+  }, [progress]);
 
  useEffect(() => { setIsVisible(!!selectedProject); }, [selectedProject]);
 
