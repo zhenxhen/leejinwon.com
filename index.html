@@ -9,7 +9,7 @@
   <script>
     // GitHub Pages SPA redirect restore
     // 404.html에서 ?/path/to/page 형태로 넘어온 경우 원래 경로로 복원
-    (function() {
+    (function () {
       var redirect = sessionStorage.redirect;
       delete sessionStorage.redirect;
       if (redirect && redirect !== location.href) {
@@ -53,6 +53,9 @@
     }
   </style>
   <link rel="stylesheet" href="/index.css">
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="f95a8f15-37f2-4987-9aac-057eb3f1a58f"></script>
+
 </head>
 
 <body>
