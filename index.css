@@ -61,8 +61,21 @@ body {
     font-weight: 400;
     /* Regular */
     line-height: 1.4;
-    letter-spacing: 0.02em;
     color: #9ca3af;
+}
+
+/* Project Body Text - For descriptions and body copy */
+.project-description {
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #4b5563; /* text-gray-600 */
+}
+
+.link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 @media (max-width: 768px) {
@@ -177,7 +190,6 @@ body {
     /* Mapping to subtext style essentially */
     font-size: 12px;
     font-weight: 700;
-    text-transform: uppercase;
     color: #6b7280;
     display: flex;
     justify-content: space-between;
@@ -196,8 +208,6 @@ body {
     font-size: 14px;
     /* subtext size */
     font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     line-height: 1.2;
     color: #000000;
 
@@ -209,4 +219,53 @@ body {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 
     transition: opacity 0.2s;
+}
+
+/* 
+  PROJECT LAYOUTS
+  Global reusable layout structures
+*/
+
+/* 2-Column Vertical Media Layout */
+.layout-vertical-media {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 8rem;
+}
+
+@media (min-width: 1100px) {
+    .layout-vertical-media {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        /* Centers vertically if heights differ */
+    }
+}
+
+.layout-vertical-media-left {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.layout-vertical-media-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 
+  Global Link Utilities 
+*/
+.link-underline {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: #9ca3af; /* gray-400 */
+    transition: text-decoration-color 0.3s ease;
+}
+
+.link-underline:hover {
+    text-decoration-color: #4b5563; /* gray-600 */
 }

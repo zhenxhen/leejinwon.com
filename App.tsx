@@ -6,17 +6,19 @@ import { Sidebar } from './components/Sidebar';
 import { ProjectList } from './components/ProjectList';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
-import { ReminderApp } from './components/projects/ReminderApp';
-import { CalendarApp } from './components/projects/CalendarApp';
-import { WidgetOptimization } from './components/projects/WidgetOptimization';
-import { ClockApp } from './components/projects/ClockApp';
-import { CreativeComputing } from './components/projects/CreativeComputing';
-import { WearableComputing } from './components/projects/WearableComputing';
-import { Project } from './types';
-import { PROJECTS, NAVIGATION_ORDER, MONITOR_DATA, HEADPHONE_DATA, WORK_ITEMS } from './constants';
+import { SamsungReminder } from './components/projects/SamsungReminder';
+import { SamsungCalendar } from './components/projects/SamsungCalendar';
+import { GalaxyOneUIWidget } from './components/projects/GalaxyOneUIWidget';
+import { SamsungClock } from './components/projects/SamsungClock';
+import { Review } from './components/projects/Review';
+import { UniversalWearableProduct } from './components/projects/UniversalWearableProduct';
+import { DigitalGarden } from './components/projects/DigitalGarden';
+import { Project, ScreenRect } from './types';
+import { PROJECTS, NAVIGATION_ORDER, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_DATA, WORK_ITEMS } from './constants';
 
 const MainLayout: React.FC = () => {
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
+  const [obstacleRects, setObstacleRects] = useState<ScreenRect[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -58,6 +60,7 @@ const MainLayout: React.FC = () => {
                 <Experience
                   currentProjectId={currentProject?.id || null}
                   onProjectSelect={handleProjectSelect}
+                  onObstacleUpdate={setObstacleRects}
                 />
               </div>
 
@@ -71,6 +74,7 @@ const MainLayout: React.FC = () => {
               {/* UI Overlay */}
               <UIOverlay
                 selectedProject={currentProject}
+                obstacleRects={obstacleRects}
                 onClose={() => setCurrentProject(null)}
                 onNext={() => {
                   if (!currentProject) return;
@@ -80,6 +84,7 @@ const MainLayout: React.FC = () => {
 
                   if (nextId === 'monitor') handleProjectSelect(MONITOR_DATA);
                   else if (nextId === 'headphone') handleProjectSelect(HEADPHONE_DATA);
+                  else if (nextId === 'publication') handleProjectSelect(PUBLICATION_DATA);
                   else {
                     const nextProject = PROJECTS.find(p => p.id === nextId);
                     handleProjectSelect(nextProject || null);
@@ -93,6 +98,7 @@ const MainLayout: React.FC = () => {
 
                   if (prevId === 'monitor') handleProjectSelect(MONITOR_DATA);
                   else if (prevId === 'headphone') handleProjectSelect(HEADPHONE_DATA);
+                  else if (prevId === 'publication') handleProjectSelect(PUBLICATION_DATA);
                   else {
                     const prevProject = PROJECTS.find(p => p.id === prevId);
                     handleProjectSelect(prevProject || null);
@@ -105,12 +111,13 @@ const MainLayout: React.FC = () => {
           } />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/project/reminder-app" element={<ReminderApp />} />
-          <Route path="/project/calendar-app" element={<CalendarApp />} />
-          <Route path="/project/widget-optimization" element={<WidgetOptimization />} />
-          <Route path="/project/clock-app" element={<ClockApp />} />
-          <Route path="/project/creative-computing" element={<CreativeComputing />} />
-          <Route path="/project/wearable-computing" element={<WearableComputing />} />
+          <Route path="/project/samsung-reminder" element={<SamsungReminder />} />
+          <Route path="/project/samsung-calendar" element={<SamsungCalendar />} />
+          <Route path="/project/galaxy-one-ui-widget" element={<GalaxyOneUIWidget />} />
+          <Route path="/project/samsung-clock" element={<SamsungClock />} />
+          <Route path="/project/review" element={<Review />} />
+          <Route path="/project/universal-wearable-product" element={<UniversalWearableProduct />} />
+          <Route path="/project/digital-garden" element={<DigitalGarden />} />
         </Routes>
       </main>
     </div>

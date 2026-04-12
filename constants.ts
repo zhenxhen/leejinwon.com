@@ -20,16 +20,7 @@ export const PLATFORM_CONCEPTS: Project[] = [
     color: '#ec4899', // Pink
     position: [-1.2, 0.15, 0.8] // Front left on desk
   },
-  {
-    id: 'tablet-reminder',
-    title: 'Large-Screen Experience',
-    category: 'Productivity',
-    deviceType: DeviceType.TABLET,
 
-    details: 'Designs workflows utilizing tablets and foldable devices. Delivers across the boundaries of mobile and desktop.',
-    color: '#3b82f6', // Blue
-    position: [1.5, 0.15, 0.2] // Right side on desk
-  },
   {
     id: 'watch-alarm',
     title: 'Wearable Experience',
@@ -67,55 +58,73 @@ export const HEADPHONE_DATA: Project = {
   position: [0, 0, 0] // Static position handled in Experience
 };
 
+export const PUBLICATION_DATA: Project = {
+  id: 'publication',
+  title: 'Publication',
+  category: 'Research',
+  deviceType: DeviceType.PUBLICATION,
+
+  details: 'A collection of magazines, news, or invited talks featuring my works and thoughts on design and technology.',
+  color: '#444444',
+  position: [0, 0, 0] // Static position like Monitor
+};
+
 export const NAVIGATION_ORDER = [
-  'tablet-reminder',
   'mobile-music',
   'watch-alarm',
   'monitor',
+  'publication',
   'xr-calendar',
   'headphone'
 ];
 
 export const WORK_ITEMS: WorkItem[] = [
   {
-    id: 'reminder-app',
-    title: 'Efficient Daily Experiences',
-    category: 'Reminder App',
-    image: '/thumbnail/1.png',
-    year: '2025'
-  },
-  {
-    id: 'calendar-app',
-    title: 'Shared Schedule Experience',
-    category: 'Calendar App',
-    image: '/thumbnail/2.png',
-    year: '2025'
-  },
-  {
-    id: 'widget-optimization',
-    title: 'Productive Widget Management',
-    category: 'Widget Optimization',
-    image: '/thumbnail/3.png',
-    year: '2024'
-  },
-  {
-    id: 'clock-app',
-    title: 'Aesthetic Time Management',
-    category: 'Clock App',
-    image: '/thumbnail/4.png',
-    year: '2024'
-  },
-  {
-    id: 'creative-computing',
-    title: 'Social Critique Computing',
-    category: 'Creative Computing Project',
+    id: 'review',
+    title: 'REVIEW',
+    category: 'AI Computing Project',
     image: '/thumbnail/5.png',
     year: '2025'
   },
   {
-    id: 'wearable-computing',
-    title: 'Universal Wearable Product',
-    category: 'Wearable Computing Project',
+    id: 'digital-garden',
+    title: 'Digital Garden',
+    category: 'Sound Engineering Project',
+    image: '/thumbnail/7.png',
+    year: '2026'
+  },
+  {
+    id: 'samsung-reminder',
+    title: 'Samsung Reminder',
+    category: 'Galaxy One UI',
+    image: '/thumbnail/1.png',
+    year: '2025'
+  },
+  {
+    id: 'samsung-calendar',
+    title: 'Samsung Calendar',
+    category: 'Galaxy One UI',
+    image: '/thumbnail/2.png',
+    year: '2025'
+  },
+  {
+    id: 'galaxy-one-ui-widget',
+    title: 'Galaxy One UI Widget',
+    category: 'Galaxy One UI',
+    image: '/thumbnail/3.png',
+    year: '2024'
+  },
+  {
+    id: 'samsung-clock',
+    title: 'Samsung Clock',
+    category: 'Galaxy One UI',
+    image: '/thumbnail/4.png',
+    year: '2024'
+  },
+  {
+    id: 'universal-wearable-product',
+    title: 'Bloomy',
+    category: 'Universal Wearable Product',
     image: '/thumbnail/6.png',
     year: '2023'
   }
