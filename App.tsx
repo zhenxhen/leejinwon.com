@@ -19,6 +19,7 @@ import { PROJECTS, NAVIGATION_ORDER, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_D
 const MainLayout: React.FC = () => {
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
   const [obstacleRects, setObstacleRects] = useState<ScreenRect[]>([]);
+  const [isExperienceReady, setIsExperienceReady] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -61,6 +62,7 @@ const MainLayout: React.FC = () => {
                   currentProjectId={currentProject?.id || null}
                   onProjectSelect={handleProjectSelect}
                   onObstacleUpdate={setObstacleRects}
+                  onReady={() => setIsExperienceReady(true)}
                 />
               </div>
 
@@ -106,6 +108,7 @@ const MainLayout: React.FC = () => {
                 }}
                 currentIndex={currentProject ? NAVIGATION_ORDER.indexOf(currentProject.id) : -1}
                 totalCount={NAVIGATION_ORDER.length}
+                isExperienceReady={isExperienceReady}
               />
             </>
           } />

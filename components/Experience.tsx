@@ -11,6 +11,7 @@ interface ExperienceProps {
   currentProjectId: string | null;
   onProjectSelect: (project: Project | null) => void;
   onObstacleUpdate?: (rects: ScreenRect[]) => void;
+  onReady?: () => void;
 }
 
 // ---------- Obstacle Tracker ----------
@@ -236,7 +237,7 @@ interface SceneContentProps extends ExperienceProps {
   setHoveredId: (id: string | null) => void;
 }
 
-const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProjectSelect, hoveredId, setHoveredId, onObstacleUpdate }) => {
+const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProjectSelect, hoveredId, setHoveredId, onObstacleUpdate, onReady }) => {
   const controlsRef = useRef<CameraControls>(null);
   const [sceneOffset, setSceneOffset] = useState<[number, number, number]>([0, 1, 0]);
 
@@ -283,10 +284,13 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
     // Camera Entry Animation
     if (controlsRef.current) {
       controlsRef.current.setLookAt(0, 0, 50, 0, 0, 0, false);
+      // Wait for models to fully settle before starting animation
       setTimeout(() => {
         controlsRef.current?.setLookAt(-20, 20, 40, 0, 0, 0, true);
-      }, 10);
+      }, 500);
     }
+
+    if (onReady) onReady();
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);

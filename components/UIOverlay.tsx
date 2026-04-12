@@ -13,6 +13,7 @@ interface UIOverlayProps {
  currentIndex: number;
  totalCount: number;
  obstacleRects: ScreenRect[];
+ isExperienceReady: boolean;
 }
 
 // ---------- pretext layout (project details only) ----------
@@ -140,14 +141,15 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({
  currentIndex,
  totalCount,
  obstacleRects,
+ isExperienceReady,
 }) => {
  const [isVisible, setIsVisible] = useState(false);
   const { progress } = useProgress();
  const [hasLoaded, setHasLoaded] = useState(false);
 
  useEffect(() => {
-  if (progress === 100) setHasLoaded(true);
-  }, [progress]);
+  if (progress === 100 && isExperienceReady) setHasLoaded(true);
+  }, [progress, isExperienceReady]);
 
  useEffect(() => { setIsVisible(!!selectedProject); }, [selectedProject]);
 
