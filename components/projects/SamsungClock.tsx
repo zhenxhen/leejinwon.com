@@ -68,7 +68,7 @@ export const SamsungClock: React.FC = () => {
 
   {/* Content Section 1 */}
   <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+  <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
    <div>
    <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
     Intuitive Entry
@@ -87,7 +87,7 @@ export const SamsungClock: React.FC = () => {
 
   {/* Content Section 2 */}
   <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+  <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
    <div className="aspect-[4/3] bg-gray-50 md:order-1">
    {/* Image Placeholder */}
    </div>

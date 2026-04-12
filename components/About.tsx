@@ -32,7 +32,7 @@ export const About: React.FC = () => {
 
 
   <section className="border-t border-gray-100 pt-16 -mx-8 px-8">
-   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16">
+   <div className="grid grid-cols-1 dt:grid-cols-2 gap-8 md:gap-12 mb-16">
    <div>
     <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black">
     Human-centered <br />System design
@@ -60,7 +60,7 @@ export const About: React.FC = () => {
    </div>
    </div>
 
-   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+   <div className="grid grid-cols-1 dt:grid-cols-2 gap-8 md:gap-12">
    <div>
     <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black">
     Technology-driven <br />Platform design
@@ -95,7 +95,7 @@ export const About: React.FC = () => {
   </section>
 
   {/* Experience & Education Grid (RESTORED) */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-gray-100 pt-16 -mx-8 px-8">
+  <div className="grid grid-cols-1 dt:grid-cols-2 gap-12 border-t border-gray-100 pt-16 -mx-8 px-8">
    {/* Experience */}
    <section>
    <h2 className="subtitle text-gray-400 mb-8">Experience</h2>
@@ -146,7 +146,7 @@ export const About: React.FC = () => {
   </div>
 
   {/* Patents & Awards */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-gray-100 pt-16 -mx-8 px-8">
+  <div className="grid grid-cols-1 dt:grid-cols-2 gap-12 border-t border-gray-100 pt-16 -mx-8 px-8">
    {/* Patents */}
    <section>
    <h2 className="subtitle text-gray-400 mb-8">Patents</h2>
@@ -220,7 +220,7 @@ export const About: React.FC = () => {
   {/* Tools Grid & Skills */}
   <section className="border-t border-gray-100 pt-16 -mx-8 px-8">
    <h2 className="subtitle text-gray-400 mb-8">Skills & Tools</h2>
-   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+   <div className="grid grid-cols-1 dt:grid-cols-2 gap-12 mb-12">
    <div>
     <h3 className="subtitle mb-4">Design</h3>
     <p className="text text-gray-600">

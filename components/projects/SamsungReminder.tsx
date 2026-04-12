@@ -23,7 +23,7 @@ export const SamsungReminder: React.FC = () => {
                     Samsung Reminder
                 </h1>
                 <p className="subtitle text-gray-600 max-w-2xl mb-2">
-                    Galaxy One UI 7.0, 2025
+                    Galaxy One UI, 2025
                 </p>
             </header>
 
@@ -35,7 +35,7 @@ export const SamsungReminder: React.FC = () => {
                 </div>
 
                 {/* Overview & Motivation */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 mt-12">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
                     <div>
                         <h2 className="mb-8 text-lg">Overview</h2>
                         <ul className="space-y-4 text-gray-600">
@@ -69,15 +69,15 @@ export const SamsungReminder: React.FC = () => {
             </section>
 
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-                <div className="mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-12 lg:gap-24 mb-16">
                     <div>
                         <h2 className="text-lg mb-4">I focused on</h2>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
-                            On-device-AI based on user intent
+                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black">
+                            • On-device-AI based on user intent
                             <br />
-                            Experience in task classification
+                            • Experience in task classification
                             <br />
-                            Enhancement of productivity experience
+                            • Enhancement of productivity experience
                         </h2>
                     </div>
                     <div>
@@ -93,9 +93,9 @@ export const SamsungReminder: React.FC = () => {
 
             {/* Content Section 1 */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 mb-16">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black">
                             AI Contextual Reminder
                         </h2>
                     </div>
@@ -114,7 +114,7 @@ export const SamsungReminder: React.FC = () => {
 
             {/* Content Section 2 */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 mb-16">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
                     <div>
                         <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Category System
@@ -138,10 +138,11 @@ export const SamsungReminder: React.FC = () => {
                 <div className="mb-16">
                     <h2 className="text-lg mb-4 text-black">Outcome</h2>
                     <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-12 max-w-4xl">
+
                         Driving Global Market Leadership and Unprecedented Commercial Success
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+                    <div className="grid grid-cols-1 dt:grid-cols-3 gap-4 lg:gap-24 items-top mb-16">
                         <div>
                             <span className="block text-4xl mb-4 text-black">50% Higher Sales</span>
                             <p className="project-description text-gray-600">
@@ -169,7 +170,7 @@ export const SamsungReminder: React.FC = () => {
                 <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-16">
                     Reviews
                 </h2>
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-4 items-top mb-16">
                     <LinkCard
                         url="https://www.youtube.com/watch?v=O2F1jaHl13c"
                         title="One UI 7 Reminder App Overhaul!"
@@ -186,7 +187,7 @@ export const SamsungReminder: React.FC = () => {
                     />
                     <LinkCard
                         url="https://tech.yahoo.com/apps/articles/samsung-reminder-ultimate-app-galaxy-160015369.html"
-                        title="Samsung Reminder: The Ultimate App for Galaxy Users"
+                        title="The Ultimate App for Galaxy Users"
                         description=" Samsung Reminder has been my go-to for the past year, and after the recent One UI 8 update, it has only gotten better."
                         image="https://s.yimg.com/ny/api/res/1.2/LXsCXQD41fErEwcdqLzXQA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTI0MDA7aD0xMzUw/https://media.zenfs.com/en/how_to_geek_999/29c0da602fc6e207e5ba954b8e323897"
                         source="tech.yahoo.com"

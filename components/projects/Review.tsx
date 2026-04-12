@@ -43,7 +43,7 @@ const TrendChart: React.FC = () => {
     const pathD = `M ${data.map((d, i) => `${getX(i)},${getY(d.global)}`).join(' L ')}`;
 
     return (
-        <div ref={sectionRef} className="w-full flex items-center justify-center h-full pt-8 lg:pt-0">
+        <div ref={sectionRef} className="w-full flex items-top justify-top h-full pt-8 lg:pt-0">
             <div className="w-full max-w-xl">
                 <h3 className="text-2xl font-normal text-black mb-8">Online User Growth Trend (Billions)</h3>
 
@@ -178,7 +178,7 @@ const ResearchSection: React.FC = () => {
                 The Violence of Language
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-top">
                 <div className="w-full">
                     <h3 className="text-2xl font-normal text-black mb-8">The proportion of cyberbullying cases.</h3>
                     <p className="text-gray-500 mb-10 text-lg">
@@ -286,7 +286,7 @@ export const Review: React.FC = () => {
 
             {/* Content Section 1 */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center mb-16">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
                     <div>
                         <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Relocating Online Language
@@ -311,8 +311,8 @@ export const Review: React.FC = () => {
 
             {/* Content Section 2 */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center mb-16">
-                    <div className="w-full h-full md:order-1 flex items-center justify-center">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
+                    <div className="w-full h-full md:order-1 flex items-top justify-top">
                         <img src="/REVIEW/02.jpg" alt="Hardware System Close-up" className="w-full h-full object-cover" />
                     </div>
                     <div className="md:order-2">
@@ -334,13 +334,13 @@ export const Review: React.FC = () => {
             {/* Image Gallery */}
             <section className="mb-32 -mx-8 px-8 md:mx-0 md:px-0">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
-                    <div className="w-full aspect-square md:aspect-[3/4] overflow-hidden">
+                    <div className="w-full aspect-3:4 md:aspect-[3/4] overflow-hidden">
                         <img src="/REVIEW/03.jpg" alt="Process documentation 1" className="w-full h-full object-cover" />
                     </div>
-                    <div className="w-full aspect-square md:aspect-[3/4] overflow-hidden">
+                    <div className="w-full aspect-3:4 md:aspect-[3/4] overflow-hidden">
                         <img src="/REVIEW/04.jpg" alt="Process documentation 2" className="w-full h-full object-cover" />
                     </div>
-                    <div className="w-full aspect-square md:aspect-[3/4] overflow-hidden">
+                    <div className="w-full aspect-3:4 md:aspect-[3/4] overflow-hidden">
                         <img src="/REVIEW/05.jpg" alt="Process documentation 3" className="w-full h-full object-cover" />
                     </div>
                 </div>
@@ -351,7 +351,7 @@ export const Review: React.FC = () => {
                 <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-16">
                     Publications
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 text-gray-500">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
                     <div className="group">
                         <h3 className="text-xl text-black mb-4">Magazine & Interview</h3>
                         <p className="text-lg leading-relaxed">

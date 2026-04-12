@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+    --breakpoint-dt: 1000px;
+}
+
 :root {
     /* Font Families */
     --font-primary: "golos-text", sans-serif;
