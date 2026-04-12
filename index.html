@@ -6,6 +6,17 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leejinwon</title>
+  <script>
+    // GitHub Pages SPA redirect restore
+    // 404.html에서 ?/path/to/page 형태로 넘어온 경우 원래 경로로 복원
+    (function() {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
   <meta name="description" content="Leejinwon - UX Design & Engineer Portfolio" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Leejinwon" />

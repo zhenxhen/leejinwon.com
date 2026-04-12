@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Leejinwon</title>
+  <script>
+    // GitHub Pages SPA redirect
+    // 직접 URL 접근 시 현재 경로를 sessionStorage에 저장 후 루트로 이동
+    // index.html에서 경로를 복원해서 React Router가 올바른 페이지를 렌더링함
+    sessionStorage.redirect = location.href;
+    location.replace(location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/');
+  </script>
+</head>
+<body></body>
+</html>
