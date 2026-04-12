@@ -76,11 +76,11 @@ export const SamsungCalendar: React.FC = () => {
                     <div>
                         <h2 className="text-lg mb-4 text-black">I focused on</h2>
                         <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
-                            Intelligent scheduling assistance
+                            • Exploration of sharing experiences
                             <br />
-                            Unified visual language for clarity
+                            • On-device AI based on user intent
                             <br />
-                            Seamless cross-device synchronization
+                            • Usability improvement
                         </h2>
                     </div>
                     <div>

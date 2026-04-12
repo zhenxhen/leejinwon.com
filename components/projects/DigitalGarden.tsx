@@ -55,7 +55,7 @@ export const DigitalGarden: React.FC = () => {
                             </li>
                             <li>
                                 <span className="block text-gray-400 mb-1">Tools</span>
-                                Python, Arduino, Max
+                                MIDI, Python, Arduino, Max
                             </li>
                         </ul>
                     </div>
