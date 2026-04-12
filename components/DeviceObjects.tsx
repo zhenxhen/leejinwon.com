@@ -283,3 +283,11 @@ export const Publication: React.FC<DeviceProps> = ({ isSelected, roughness, isHo
  </group>
  );
 };
+
+// Preload all GLB models so they start downloading before Suspense mounts
+useGLTF.preload(`${import.meta.env.BASE_URL}models/XR.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/phone.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/smartwatch.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/monitor.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/headphone.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/news.glb`);

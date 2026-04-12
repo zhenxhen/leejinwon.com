@@ -146,7 +146,7 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({
  const [hasLoaded, setHasLoaded] = useState(false);
 
  useEffect(() => {
- if (progress === 100 && !active) setTimeout(() => setHasLoaded(true), 500);
+ if (progress === 100 && !active) setHasLoaded(true);
  }, [progress, active]);
 
  useEffect(() => { setIsVisible(!!selectedProject); }, [selectedProject]);
