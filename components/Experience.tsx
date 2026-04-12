@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Environment, ContactShadows, OrthographicCamera, CameraControls, RoundedBox, Float } from '@react-three/drei';
+import { Environment, ContactShadows, OrthographicCamera, CameraControls, RoundedBox, Float, Preload } from '@react-three/drei';
 import { PROJECTS, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_DATA } from '../constants';
 import { DeviceType, Project, ScreenRect } from '../types';
 import { XRHeadset, MobilePhone, Watch, Monitor, Headphone, Publication } from './DeviceObjects';
@@ -505,6 +505,7 @@ export const Experience: React.FC<ExperienceProps> = (props) => {
         <React.Suspense fallback={null}>
           <SceneContent {...props} hoveredId={hoveredId} setHoveredId={setHoveredId} />
         </React.Suspense>
+        <Preload all />
       </Canvas>
 
 
