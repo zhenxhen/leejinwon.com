@@ -11,7 +11,7 @@ import { SamsungCalendar } from './components/projects/SamsungCalendar';
 import { GalaxyOneUIWidget } from './components/projects/GalaxyOneUIWidget';
 import { SamsungClock } from './components/projects/SamsungClock';
 import { Review } from './components/projects/Review';
-import { UniversalWearableProduct } from './components/projects/UniversalWearableProduct';
+import { Bloomy } from './components/projects/Bloomy';
 import { DigitalGarden } from './components/projects/DigitalGarden';
 import { Project, ScreenRect } from './types';
 import { PROJECTS, NAVIGATION_ORDER, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_DATA, WORK_ITEMS } from './constants';
@@ -119,7 +119,7 @@ const MainLayout: React.FC = () => {
           <Route path="/project/galaxy-one-ui-widget" element={<GalaxyOneUIWidget />} />
           <Route path="/project/samsung-clock" element={<SamsungClock />} />
           <Route path="/project/review" element={<Review />} />
-          <Route path="/project/universal-wearable-product" element={<UniversalWearableProduct />} />
+          <Route path="/project/bloomy" element={<Bloomy />} />
           <Route path="/project/digital-garden" element={<DigitalGarden />} />
         </Routes>
       </main>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Menu, X, MoveUpRight } from 'lucide-react';
 
 interface SidebarProps {
@@ -110,7 +110,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activePage }) => {
                 onClick={() => setIsMenuOpen(false)}
             >
                 <div
-                    className="w-full bg-white pt-20 pb-8 shadow-sm"
+                    className="w-full bg-white pt-20 pb-8 shadow-sm mobile-menu-panel"
                     onClick={(e) => e.stopPropagation()}
                 >
                     <div className="px-8 flex flex-col">

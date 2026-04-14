@@ -122,7 +122,7 @@ export const WORK_ITEMS: WorkItem[] = [
     year: '2024'
   },
   {
-    id: 'universal-wearable-product',
+    id: 'bloomy',
     title: 'Bloomy',
     category: 'Universal Wearable Product',
     image: '/thumbnail/6.png',

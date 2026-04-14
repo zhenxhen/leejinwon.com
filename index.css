@@ -74,7 +74,8 @@ body {
     font-size: 18px;
     font-weight: 400;
     line-height: 1.6;
-    color: #4b5563; /* text-gray-600 */
+    color: #4b5563;
+    /* text-gray-600 */
 }
 
 .link {
@@ -266,10 +267,164 @@ body {
     text-decoration: underline;
     text-underline-offset: 4px;
     text-decoration-thickness: 1px;
-    text-decoration-color: #9ca3af; /* gray-400 */
+    text-decoration-color: #9ca3af;
+    /* gray-400 */
     transition: text-decoration-color 0.3s ease;
 }
 
 .link-underline:hover {
-    text-decoration-color: #4b5563; /* gray-600 */
+    text-decoration-color: #4b5563;
+    /* gray-600 */
+}
+
+/*
+  BLOOMY PAGE — DARK THEME TRANSITION
+  Triggered by scroll past "I focused on" section
+*/
+
+/* Always-on transitions so both light→dark and dark→light animate */
+.bloomy-page .text-black,
+.bloomy-page .text-gray-600,
+.bloomy-page .text-gray-500,
+.bloomy-page .text-gray-400,
+.bloomy-page .text-gray-300,
+.bloomy-page .text-gray-200,
+.bloomy-page .project-description,
+.bloomy-page .title,
+.bloomy-page .subtitle {
+    transition: color 0.7s ease;
+}
+
+.bloomy-page .bg-gray-100,
+.bloomy-page .bg-gray-50 {
+    transition: background-color 0.7s ease;
+}
+
+.bloomy-page .border-gray-100 {
+    transition: border-color 0.7s ease;
+}
+
+/* Dark overrides — specificity (0,2,0) beats Tailwind utility (0,1,0) */
+.bloomy-dark .text-black   { color: #f0f0f0; }
+.bloomy-dark .text-gray-600 { color: #c8c8c8; }
+.bloomy-dark .text-gray-500 { color: #a8a8a8; }
+.bloomy-dark .text-gray-400 { color: #707070; }
+.bloomy-dark .text-gray-300 { color: #585858; }
+.bloomy-dark .text-gray-200 { color: #484848; }
+.bloomy-dark .text-white    { color: #ffffff; }   /* keep white-on-dark cards */
+
+.bloomy-dark .project-description { color: #c8c8c8; }
+.bloomy-dark .title    { color: #f0f0f0; }
+.bloomy-dark .subtitle { color: #c0c0c0; }
+
+.bloomy-dark .bg-gray-100 { background-color: #4a4a4a; }
+.bloomy-dark .bg-gray-50  { background-color: #404040; }
+.bloomy-dark .border-gray-100 { border-color: #505050; }
+
+/* tabular-nums value labels in charts */
+.bloomy-dark .tabular-nums { color: #f0f0f0; }
+
+/* strong highlights inside paragraphs */
+.bloomy-dark strong.text-black { color: #f0f0f0; }
+
+/* HBarChart bars — inverted hierarchy in dark mode
+   Light > prominent, Dark > less prominent (opposite of light mode) */
+.bloomy-dark .bloomy-bar.bg-black   { background-color: #f0f0f0; }
+.bloomy-dark .bloomy-bar.bg-gray-500 { background-color: #c0c0c0; }
+.bloomy-dark .bloomy-bar.bg-gray-400 { background-color: #909090; }
+.bloomy-dark .bloomy-bar.bg-gray-300 { background-color: #686868; }
+.bloomy-dark .bloomy-bar.bg-gray-200 { background-color: #505050; }
+
+/*
+  BLOOMY — SIDEBAR DARK MODE
+  Synced via document.body.classList on scroll
+*/
+
+/* Desktop sidebar */
+body.bloomy-dark-mode aside {
+    background-color: #353535;
+    border-color: #505050;
+    transition: background-color 0.7s ease, border-color 0.7s ease;
+}
+
+body aside {
+    transition: background-color 0.7s ease, border-color 0.7s ease;
+}
+
+body.bloomy-dark-mode aside h1,
+body.bloomy-dark-mode aside p {
+    color: #c8c8c8;
+    transition: color 0.7s ease;
+}
+
+body aside h1,
+body aside p {
+    transition: color 0.7s ease;
+}
+
+body.bloomy-dark-mode aside a {
+    transition: color 0.7s ease;
+}
+
+body aside a {
+    transition: color 0.7s ease;
+}
+
+/* Active link */
+body.bloomy-dark-mode aside a.text-black {
+    color: #f0f0f0;
+}
+
+/* Inactive links */
+body.bloomy-dark-mode aside a.text-gray-400 {
+    color: #707070;
+}
+
+/* Mobile header — background */
+body.bloomy-dark-mode header.md\:hidden {
+    background-color: rgba(53, 53, 53, 0.6);
+}
+
+body header.md\:hidden {
+    transition: background-color 0.7s ease;
+}
+
+/* Mobile header — text & icons */
+body header.md\:hidden h1,
+body header.md\:hidden button {
+    transition: color 0.7s ease;
+}
+
+body.bloomy-dark-mode header.md\:hidden h1 {
+    color: #f0f0f0;
+}
+
+body.bloomy-dark-mode header.md\:hidden button {
+    color: #f0f0f0;
+}
+
+/* Lucide icon SVG strokes inherit from button color */
+body.bloomy-dark-mode header.md\:hidden button svg {
+    color: #f0f0f0;
+}
+
+/* Mobile menu dropdown panel */
+body .mobile-menu-panel {
+    transition: background-color 0.7s ease;
+}
+
+body.bloomy-dark-mode .mobile-menu-panel {
+    background-color: #353535;
+}
+
+body .mobile-menu-panel a {
+    transition: color 0.7s ease;
+}
+
+body.bloomy-dark-mode .mobile-menu-panel a.text-black {
+    color: #f0f0f0;
+}
+
+body.bloomy-dark-mode .mobile-menu-panel a.text-gray-400 {
+    color: #707070;
 }
