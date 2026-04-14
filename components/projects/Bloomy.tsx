@@ -41,7 +41,7 @@ const StackedBar: React.FC<{
             <div className="flex w-full">
                 {data.map((d, i) => (
                     <div key={i} style={{ flex: `0 0 ${(d.value / total) * 100}%`, overflow: 'hidden', opacity: isVisible ? 1 : 0, transition: `opacity 0.4s ease ${delay + 900 + i * 60}ms` }}>
-                        <span className="text-xs block leading-tight line-clamp-2" style={{ color: d.key ? KEY_COLOR : undefined }}>{d.label}</span>
+                        <span className={`text-xs block leading-tight line-clamp-2${!d.key ? ' hidden sm:block' : ''}`} style={{ color: d.key ? KEY_COLOR : undefined }}>{d.label}</span>
                     </div>
                 ))}
             </div>
@@ -373,7 +373,7 @@ export const Bloomy: React.FC = () => {
                 </div>
 
                 {/* Overview & Mission */}
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-12">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-12">
                     <div>
                         <h2 className="mb-8 text-lg">Overview</h2>
                         <ul className="space-y-4 text-gray-600">
@@ -530,7 +530,7 @@ export const Bloomy: React.FC = () => {
             {/* HMW */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <p className="text-xs text-gray-400 tracking-widest uppercase mb-8">HMW</p>
-                <p className="text-2xl md:text-3xl font-normal leading-relaxed text-black max-w-4xl">
+                <p className="text-1xl md:text-3xl font-normal leading-relaxed text-black max-w-4xl">
                     How can we provide a{' '}
                     <span style={{ color: KEY_COLOR }}>Universally accessible</span>{' '}
                     solution that offers communication{' '}
@@ -573,7 +573,7 @@ export const Bloomy: React.FC = () => {
 
                     <img src="/bloomy/Work Flow.png" alt="Work Flow Diagram" className="w-full h-full object-contain" />
                 </div>
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-16">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mt-16">
                     <div>
                         <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Smart Watch + Application
@@ -596,7 +596,7 @@ export const Bloomy: React.FC = () => {
             {/* Product Hardware */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <p className="text-xs text-gray-400 tracking-widest uppercase mb-8">Product</p>
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-16">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-16">
                     <div className="w-full">
                         <img src="/bloomy/Product.png" alt="Product Hardware Render" className="w-full h-full object-contain" />
                     </div>
@@ -637,7 +637,7 @@ export const Bloomy: React.FC = () => {
             {/* Conversation / Inclusivity */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <p className="text-xs text-gray-400 tracking-widest uppercase mb-8">Expectation</p>
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top">
                     <div>
                         <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Enabling equal participation in conversation
