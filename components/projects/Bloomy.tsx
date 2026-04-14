@@ -127,7 +127,7 @@ const ResearchSection: React.FC = () => {
     return (
         <section ref={sectionRef} className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
             <p className="text-xs text-gray-400 tracking-widest uppercase mb-8">Research</p>
-            <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-4">
+            <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-4">
                 People with hearing loss facing<br />communication barriers
             </h2>
             <p className="project-description mb-10 max-w-2xl">
@@ -189,16 +189,16 @@ const ResearchSection: React.FC = () => {
                         <div className="flex-1 min-w-0">
 
                             {/* Donut rings */}
-                            <div className="grid grid-cols-2 gap-6 mb-10">
+                            <div className="grid grid-cols-2 gap-6 mb-16">
                                 {hearingAids.map((item, idx) => {
                                     const r = 46;
                                     const circ = 2 * Math.PI * r;
                                     const track = isDark ? '#555' : '#e5e7eb';
                                     return (
-                                        <div key={item.label} className="flex items-start gap-4"
+                                        <div key={item.label} className="flex flex-col items-center dt:flex-row dt:items-start gap-4"
                                             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(8px)', transition: `opacity 0.7s ease ${idx * 200}ms, transform 0.7s ease ${idx * 200}ms` }}>
                                             {/* Ring */}
-                                            <div className="relative shrink-0 w-24 h-24">
+                                            <div className="relative shrink-0 w-24 h-24 mb-8 dt:mb-0">
                                                 <svg viewBox="0 0 108 108" className="absolute inset-0 w-full h-full" style={{ transform: 'rotate(-90deg)' }}>
                                                     <circle cx="54" cy="54" r={r} fill="none" stroke={track} strokeWidth="5" />
                                                     <circle cx="54" cy="54" r={r} fill="none" stroke={item.stroke} strokeWidth="5" strokeLinecap="round"
@@ -373,7 +373,7 @@ export const Bloomy: React.FC = () => {
                 </div>
 
                 {/* Overview & Mission */}
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-12">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-12">
                     <div>
                         <h2 className="mb-8 text-lg">Overview</h2>
                         <ul className="space-y-4 text-gray-600">
@@ -412,12 +412,12 @@ export const Bloomy: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-1 gap-12 lg:gap-24 mb-16">
                     <div>
                         <h2 className="text-lg mb-4 text-black">I focused on</h2>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black">
-                            • Universally accessible wearable design
+                        <h2 className="text-2xl md:text-3xl font-normal leading-tight text-black">
+                            • Universal wearable design
                             <br />
-                            • Context-aware communication translation
+                            • Context-aware translation
                             <br />
-                            • Proactive emergency alerts & subtle interactions
+                            • Proactive emergency interactions
                         </h2>
                     </div>
                     <div>
@@ -548,7 +548,7 @@ export const Bloomy: React.FC = () => {
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <div className="mb-16">
                     <p className="text-xs text-gray-400 tracking-widest uppercase mb-8">Concept Mapping</p>
-                    <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black max-w-2xl">
+                    <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black max-w-2xl">
                         Five pillars that guided every design decision
                     </h2>
                 </div>
@@ -573,9 +573,9 @@ export const Bloomy: React.FC = () => {
 
                     <img src="/bloomy/Work Flow.png" alt="Work Flow Diagram" className="w-full h-full object-contain" />
                 </div>
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-16">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-16">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Smart Watch + Application
                         </h2>
                     </div>
@@ -596,7 +596,7 @@ export const Bloomy: React.FC = () => {
             {/* Product Hardware */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <p className="text-xs text-gray-400 tracking-widest uppercase mb-8">Product</p>
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-16">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-16">
                     <div className="w-full">
                         <img src="/bloomy/Product.png" alt="Product Hardware Render" className="w-full h-full object-contain" />
                     </div>
@@ -615,7 +615,7 @@ export const Bloomy: React.FC = () => {
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <div className="mb-16">
                     <p className="text-xs text-gray-400 tracking-widest uppercase mb-8">Application</p>
-                    <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black max-w-2xl">
+                    <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black max-w-2xl">
                         A companion app designed around hearing loss
                     </h2>
                 </div>
@@ -637,9 +637,9 @@ export const Bloomy: React.FC = () => {
             {/* Conversation / Inclusivity */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <p className="text-xs text-gray-400 tracking-widest uppercase mb-8">Expectation</p>
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Enabling equal participation in conversation
                         </h2>
                     </div>

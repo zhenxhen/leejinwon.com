@@ -34,7 +34,7 @@ export const About: React.FC = () => {
                 <section className="border-t border-gray-100 pt-16 -mx-8 px-8">
                     <div className="grid grid-cols-1 dt:grid-cols-2 gap-8 md:gap-12 mb-16">
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black">
+                            <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black">
                                 Human-centered <br />System design
                             </h2>
                         </div>
@@ -62,7 +62,7 @@ export const About: React.FC = () => {
 
                     <div className="grid grid-cols-1 dt:grid-cols-2 gap-8 md:gap-12">
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black">
+                            <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black">
                                 Technology-driven <br />Platform design
                             </h2>
                         </div>

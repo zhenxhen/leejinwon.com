@@ -35,7 +35,7 @@ export const SamsungClock: React.FC = () => {
 
             {/* Introduction */}
             <section className="mb-12">
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-4">
                     <div>
                         <h2 className="mb-8 text-lg">Overview</h2>
                         <ul className="space-y-4 text-gray-600">
@@ -68,11 +68,34 @@ export const SamsungClock: React.FC = () => {
                 </div>
             </section>
 
+            {/* "I focused on" Section */}
+            <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-12 lg:gap-24 mb-16">
+                    <div>
+                        <h2 className="text-lg mb-4 text-gray-400">I focused on</h2>
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black">
+                            • Grouped alarm management
+                            <br />
+                            • Unified time-tracking interactions
+                            <br />
+                            • A richer world clock experience
+                        </h2>
+                    </div>
+                    <div>
+                        <div className="project-description space-y-6">
+                            <p>
+                                I explored how the Clock app could grow beyond a single-purpose alarm tool into a genuine time management companion. I focused on how grouping alarms, unifying the stopwatch and timer with a shared visual language, and enriching the world clock with live geography and weather context could together make everyday time management more intuitive and effortless.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Content Section 1: Alarm Group */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-24 items-center mb-4">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Discovering the Alarm Group Experience
                         </h2>
                         <div className="project-description space-y-6">
@@ -94,7 +117,7 @@ export const SamsungClock: React.FC = () => {
                         <img src="/clock/clock2.png" alt="Stopwatch and timer with unified visual language and lap history" className="w-full h-full object-contain" />
                     </div>
                     <div className="md:order-2">
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             A Unified Time Management Experience
                         </h2>
                         <div className="project-description space-y-6">
@@ -110,7 +133,7 @@ export const SamsungClock: React.FC = () => {
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-24 items-center mb-4">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             A More Informative World Clock
                         </h2>
                         <div className="project-description space-y-6">
@@ -129,27 +152,27 @@ export const SamsungClock: React.FC = () => {
             {/* Outcome Section */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <div className="mb-16">
-                    <h2 className="text-lg mb-4 text-black">Outcome</h2>
-                    <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-12 max-w-4xl">
+                    <h2 className="text-lg mb-4 text-gray-400">Outcome</h2>
+                    <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-12 max-w-4xl">
 
                         Driving Global Market Leadership and Unprecedented Commercial Success
                     </h2>
 
                     <div className="grid grid-cols-1 dt:grid-cols-3 gap-4 lg:gap-24 items-top mb-16">
                         <div>
-                            <span className="block text-4xl mb-4 text-black">50% Higher Sales</span>
+                            <span className="block text-2xl md:text-4xl  mb-4 text-black">50% Higher Sales</span>
                             <p className="project-description text-gray-600">
                                 Achieved a 50% surge in overall sales through optimized market strategies and enhanced product value.
                             </p>
                         </div>
                         <div>
-                            <span className="block text-4xl mb-4 text-black">26% User Increased</span>
+                            <span className="block text-2xl md:text-4xl  mb-4 text-black">26% User Increased</span>
                             <p className="project-description text-gray-600">
                                 Successfully expanded the active user base by 26% through intuitive UI improvements and new core features.
                             </p>
                         </div>
                         <div>
-                            <span className="block text-4xl mb-4 text-black">On-device AI Integrated</span>
+                            <span className="block text-2xl md:text-4xl  mb-4 text-black">On-device AI Integrated</span>
                             <p className="project-description text-gray-600">
                                 Pioneered a more secure and responsive experience by integrating cutting-edge on-device AI capabilities.
                             </p>
@@ -160,7 +183,7 @@ export const SamsungClock: React.FC = () => {
 
             {/* Reviews / Mentions Section */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-                <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-16">
+                <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-16">
                     Reviews
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-4 items-top mb-16">

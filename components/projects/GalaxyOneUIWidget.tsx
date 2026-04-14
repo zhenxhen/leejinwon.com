@@ -79,7 +79,7 @@ export const GalaxyOneUIWidget: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-1 gap-12 lg:gap-24 mb-16">
                     <div>
                         <h2 className="text-lg mb-4 text-black">I focused on</h2>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black">
                             • Active control over passive viewing
                             <br />
                             • Situational UI adaptability
@@ -101,7 +101,7 @@ export const GalaxyOneUIWidget: React.FC = () => {
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Interactive Without Opening
                         </h2>
                     </div>
@@ -122,7 +122,7 @@ export const GalaxyOneUIWidget: React.FC = () => {
             <section className="border-t border-gray-100 grid grid-cols-1 dt:grid-cols-2 pt-16 -mx-8 px-8 mb-32">
                 <div className=" gap-4 lg:gap-24 items-top mb-4">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Purpose-Driven Single Widgets
                         </h2>
                     </div>
@@ -149,7 +149,7 @@ export const GalaxyOneUIWidget: React.FC = () => {
                 </div>
                 <div className="gap-4 lg:gap-24 items-top mb-4">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Diverse View Options
                         </h2>
                     </div>
@@ -170,28 +170,29 @@ export const GalaxyOneUIWidget: React.FC = () => {
             {/* Outcome Section */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
                 <div className="mb-16">
-                    <h2 className="text-lg mb-4 text-black">Outcome</h2>
-                    <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-12 max-w-4xl">
-                        Streamlined Home Screen Usability and Increased Feature Adoption
+                    <h2 className="text-lg mb-4 text-gray-400">Outcome</h2>
+                    <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-12 max-w-4xl">
+
+                        Driving Global Market Leadership and Unprecedented Commercial Success
                     </h2>
 
                     <div className="grid grid-cols-1 dt:grid-cols-3 gap-4 lg:gap-24 items-top mb-16">
                         <div>
-                            <span className="block text-4xl mb-4 text-black">40% Higher Engagement</span>
+                            <span className="block text-2xl md:text-4xl  mb-4 text-black">50% Higher Sales</span>
                             <p className="project-description text-gray-600">
-                                Experienced a 40% absolute increase in daily interactions directly from the home screen thanks to new interactive widget capabilities.
+                                Achieved a 50% surge in overall sales through optimized market strategies and enhanced product value.
                             </p>
                         </div>
                         <div>
-                            <span className="block text-4xl mb-4 text-black">Stack Adoption</span>
+                            <span className="block text-2xl md:text-4xl  mb-4 text-black">26% User Increased</span>
                             <p className="project-description text-gray-600">
-                                Smart Stacks became one of the most utilized personalization features within the first month of rollout, significantly decluttering mobile screens.
+                                Successfully expanded the active user base by 26% through intuitive UI improvements and new core features.
                             </p>
                         </div>
                         <div>
-                            <span className="block text-4xl mb-4 text-black">Contextual Surfacing</span>
+                            <span className="block text-2xl md:text-4xl  mb-4 text-black">On-device AI Integrated</span>
                             <p className="project-description text-gray-600">
-                                Context-aware surfacing reduced drop-off rates, helping users access specific actions effortlessly without opening full applications.
+                                Pioneered a more secure and responsive experience by integrating cutting-edge on-device AI capabilities.
                             </p>
                         </div>
                     </div>
@@ -200,7 +201,7 @@ export const GalaxyOneUIWidget: React.FC = () => {
 
             {/* Reviews / Mentions Section */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-                <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-16">
+                <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-16">
                     Reviews
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-4 items-top mb-16">

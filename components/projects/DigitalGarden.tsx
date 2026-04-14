@@ -41,7 +41,7 @@ export const DigitalGarden: React.FC = () => {
                 </div>
 
                 {/* Overview – directly below, no divider */}
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-4">
                     <div>
                         <h2 className="mb-8 text-lg">Overview</h2>
                         <ul className="space-y-4 text-gray-600">
@@ -72,9 +72,9 @@ export const DigitalGarden: React.FC = () => {
 
             {/* Content Section 1 */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-4">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+                        <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-8">
                             Nurturing Digital Life
                         </h2>
                         <div className="project-description space-y-6">
@@ -99,10 +99,10 @@ export const DigitalGarden: React.FC = () => {
 
             {/* Publications */}
             <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
-                <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-16">
+                <h2 className="text-2xl md:text-4xl font-normal leading-tight text-black mb-16">
                     Publications
                 </h2>
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-4">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-4">
                     <div>
                         <h3 className="text-xl text-black mb-4">Exhibition</h3>
                         <p className="text-lg leading-relaxed">
