@@ -373,7 +373,7 @@ export const Bloomy: React.FC = () => {
                 </div>
 
                 {/* Overview & Mission */}
-                <div className="grid grid-cols-1 dt:grid-cols-2 gap-4 lg:gap-24 items-top mb-12">
+                <div className="grid grid-cols-1 dt:grid-cols-2 gap-24 lg:gap-24 items-top mb-12">
                     <div>
                         <h2 className="mb-8 text-lg">Overview</h2>
                         <ul className="space-y-4 text-gray-600">
