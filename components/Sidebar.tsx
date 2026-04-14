@@ -41,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activePage }) => {
         } else if (name === 'Contact') {
             onNavigate('contact');
         } else if (name === 'View CV') {
-            window.open('https://drive.google.com/file/d/1m8HhnaSv1ECcNSok6q0YawZzTF1V4cFn/view?usp=sharing', '_blank');
+            window.open('https://drive.google.com/file/d/1UTGchW8Tl3nvyc-GNFN4ONbcDpekQ9zw/view?usp=sharing', '_blank');
             return;
         } else {
             // Default behavior for other links if any

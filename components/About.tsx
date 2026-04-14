@@ -403,7 +403,7 @@ export const About: React.FC = () => {
                             <div className="subtitle mb-8 invisible hidden md:block">Contact</div>
                             <a target="_blank" href="https://www.linkedin.com/in/jinwon-eugene-lee/">LinkedIn</a>
                             <a target="_blank" href="https://www.instagram.com/eeezeen/">Instagram</a>
-                            <a target="_blank" href="https://drive.google.com/file/d/1m8HhnaSv1ECcNSok6q0YawZzTF1V4cFn/view?usp=sharing">View CV</a>
+                            <a target="_blank" href="https://drive.google.com/file/d/1UTGchW8Tl3nvyc-GNFN4ONbcDpekQ9zw/view?usp=sharing">View CV</a>
                         </div>
                     </div>
                 </section>
