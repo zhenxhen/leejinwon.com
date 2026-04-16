@@ -106,7 +106,7 @@ export const About: React.FC = () => {
                                 </div>
                                 <p className="text text-gray-600 mb-4">UX Designer <br /> <p className="text-gray-400">Mobile eXperience Division<br />Seoul, South Korea</p></p>
                                 <p className="text text-gray-500">
-                                    6 years of experience in Core UX for One UI.<br /><br />
+                                    Core UX for One UI.<br /><br />
 
                                     Maintenance and support of ecosystem applications to maximize productivity.<br /><br />
 
