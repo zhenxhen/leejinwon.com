@@ -9,7 +9,7 @@ export const About: React.FC = () => {
                     About
                 </h1>
                 <p className="subtitle text-gray-600">
-                    I'm Jinwon Lee (Eugene), UX Designer at Samsung Electronics and Media Artist. <br />I design systems that connect people with technology across diverse devices and platforms. <br />My focus is on universal, intuitive experiences that bridge human needs and emerging technology.
+                    I'm Jinwon Lee (Eugene), System Designer at Samsung Electronics and Creative Technologists. <br />I design systems that connect people with technology across diverse devices and platforms. <br />My focus is on universal, intuitive experiences that bridge human needs and emerging technology.
                 </p>
             </header>
 
@@ -104,7 +104,7 @@ export const About: React.FC = () => {
                                 <div className="flex flex-col md:flex-row md:items-baseline justify-between">
                                     <h3 className="subtitle group-hover:text-gray-600 transition-colors">Samsung Electronics</h3>
                                 </div>
-                                <p className="text text-gray-600 mb-4">UX Designer <br /> <p className="text-gray-400">Mobile eXperience Division<br />Seoul, South Korea</p></p>
+                                <p className="text text-gray-600 mb-4">System Designer <br /> <p className="text-gray-400">Mobile eXperience Division<br />Seoul, South Korea</p></p>
                                 <p className="text text-gray-500">
                                     Core UX for One UI.<br /><br />
 

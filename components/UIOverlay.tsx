@@ -182,7 +182,7 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({
   <h1 className="title tabular-nums">{Math.round(progress)}%</h1>
  ) : (
   <div className="animate-fade-in">
-  <h1 className="title">UX Designer<br />& Media Artist</h1>
+  <h1 className="title">System Designer<br />& Creative Technologists</h1>
   <p className="text mt-4 max-w-xs text-gray-500">
   I specialize in designing new usability and developing systems across diverse devices and platforms.
   </p>
