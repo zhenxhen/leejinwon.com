@@ -24,6 +24,7 @@ const Bloomy = lazy(() => import('./components/projects/Bloomy').then(m => ({ de
 const DigitalGarden = lazy(() => import('./components/projects/DigitalGarden').then(m => ({ default: m.DigitalGarden })));
 const PostLiterature = lazy(() => import('./components/projects/PostLiterature').then(m => ({ default: m.PostLiterature })));
 const InterPlay = lazy(() => import('./components/projects/InterPlay').then(m => ({ default: m.InterPlay })));
+const Ectomnesia = lazy(() => import('./components/projects/Ectomnesia').then(m => ({ default: m.Ectomnesia })));
 import { PROJECTS, NAVIGATION_ORDER, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_DATA, WORK_ITEMS } from './constants';
 
 const MainLayout: React.FC = () => {
@@ -135,6 +136,7 @@ const MainLayout: React.FC = () => {
           <Route path="/project/digital-garden" element={<Suspense fallback={null}><DigitalGarden /></Suspense>} />
           <Route path="/project/post-literature" element={<Suspense fallback={null}><PostLiterature /></Suspense>} />
           <Route path="/project/interplay" element={<Suspense fallback={null}><InterPlay /></Suspense>} />
+          <Route path="/project/ectomnesia" element={<Suspense fallback={null}><Ectomnesia /></Suspense>} />
         </Routes>
       </main>
     </div>
