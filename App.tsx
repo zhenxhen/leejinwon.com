@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { Experience } from './components/Experience';
 import { UIOverlay } from './components/UIOverlay';
 import { Sidebar } from './components/Sidebar';
 import { ProjectList } from './components/ProjectList';
-import { About } from './components/About';
-import { Contact } from './components/Contact';
-import { SamsungReminder } from './components/projects/SamsungReminder';
-import { SamsungCalendar } from './components/projects/SamsungCalendar';
-import { GalaxyOneUIWidget } from './components/projects/GalaxyOneUIWidget';
-import { SamsungClock } from './components/projects/SamsungClock';
-import { Review } from './components/projects/Review';
-import { Bloomy } from './components/projects/Bloomy';
-import { DigitalGarden } from './components/projects/DigitalGarden';
 import { Project, ScreenRect } from './types';
+
+// three + drei + react-three-fiber는 메인 번들에서 떼어낸다.
+// 사이드바와 히어로 텍스트는 이 청크를 기다리지 않고 바로 그려지고,
+// 3D 청크는 그와 병렬로 내려받는다.
+const Experience = lazy(() =>
+  import('./components/Experience').then(m => ({ default: m.Experience }))
+);
+
+// 상세 페이지들도 라우트 단위로 분리 — 첫 화면에서는 받을 이유가 없다.
+const About = lazy(() => import('./components/About').then(m => ({ default: m.About })));
+const Contact = lazy(() => import('./components/Contact').then(m => ({ default: m.Contact })));
+const SamsungReminder = lazy(() => import('./components/projects/SamsungReminder').then(m => ({ default: m.SamsungReminder })));
+const SamsungCalendar = lazy(() => import('./components/projects/SamsungCalendar').then(m => ({ default: m.SamsungCalendar })));
+const GalaxyOneUIWidget = lazy(() => import('./components/projects/GalaxyOneUIWidget').then(m => ({ default: m.GalaxyOneUIWidget })));
+const SamsungClock = lazy(() => import('./components/projects/SamsungClock').then(m => ({ default: m.SamsungClock })));
+const Review = lazy(() => import('./components/projects/Review').then(m => ({ default: m.Review })));
+const Bloomy = lazy(() => import('./components/projects/Bloomy').then(m => ({ default: m.Bloomy })));
+const DigitalGarden = lazy(() => import('./components/projects/DigitalGarden').then(m => ({ default: m.DigitalGarden })));
 import { PROJECTS, NAVIGATION_ORDER, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_DATA, WORK_ITEMS } from './constants';
 
 const MainLayout: React.FC = () => {
@@ -58,12 +66,14 @@ const MainLayout: React.FC = () => {
             <>
               {/* 3D Background / Hero Section */}
               <div className="fixed inset-0 md:left-64 w-auto h-full z-0">
-                <Experience
-                  currentProjectId={currentProject?.id || null}
-                  onProjectSelect={handleProjectSelect}
-                  onObstacleUpdate={setObstacleRects}
-                  onReady={() => setIsExperienceReady(true)}
-                />
+                <Suspense fallback={<div className="w-full h-full bg-white" />}>
+                  <Experience
+                    currentProjectId={currentProject?.id || null}
+                    onProjectSelect={handleProjectSelect}
+                    onObstacleUpdate={setObstacleRects}
+                    onReady={() => setIsExperienceReady(true)}
+                  />
+                </Suspense>
               </div>
 
               {/* Project List */}
@@ -112,15 +122,15 @@ const MainLayout: React.FC = () => {
               />
             </>
           } />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/project/samsung-reminder" element={<SamsungReminder />} />
-          <Route path="/project/samsung-calendar" element={<SamsungCalendar />} />
-          <Route path="/project/galaxy-one-ui-widget" element={<GalaxyOneUIWidget />} />
-          <Route path="/project/samsung-clock" element={<SamsungClock />} />
-          <Route path="/project/review" element={<Review />} />
-          <Route path="/project/bloomy" element={<Bloomy />} />
-          <Route path="/project/digital-garden" element={<DigitalGarden />} />
+          <Route path="/about" element={<Suspense fallback={null}><About /></Suspense>} />
+          <Route path="/contact" element={<Suspense fallback={null}><Contact /></Suspense>} />
+          <Route path="/project/samsung-reminder" element={<Suspense fallback={null}><SamsungReminder /></Suspense>} />
+          <Route path="/project/samsung-calendar" element={<Suspense fallback={null}><SamsungCalendar /></Suspense>} />
+          <Route path="/project/galaxy-one-ui-widget" element={<Suspense fallback={null}><GalaxyOneUIWidget /></Suspense>} />
+          <Route path="/project/samsung-clock" element={<Suspense fallback={null}><SamsungClock /></Suspense>} />
+          <Route path="/project/review" element={<Suspense fallback={null}><Review /></Suspense>} />
+          <Route path="/project/bloomy" element={<Suspense fallback={null}><Bloomy /></Suspense>} />
+          <Route path="/project/digital-garden" element={<Suspense fallback={null}><DigitalGarden /></Suspense>} />
         </Routes>
       </main>
     </div>
