@@ -344,21 +344,6 @@ export const InterPlay: React.FC = () => {
     </div>
    </section>
 
-   {/* Gallery */}
-   <section className="mb-32 -mx-8 px-8 md:mx-0 md:px-0">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
-     <div className="w-full overflow-hidden">
-      <img src="/interplay/01-home.webp" alt="Index page" className="w-full h-full object-cover" />
-     </div>
-     <div className="w-full overflow-hidden">
-      <img src="/interplay/03-generator.webp" alt="Logo generator for the exhibition committee" className="w-full h-full object-cover" />
-     </div>
-     <div className="w-full overflow-hidden">
-      <img src="/interplay/02-project.webp" alt="Work detail page — Post Literature" className="w-full h-full object-cover" />
-     </div>
-    </div>
-   </section>
-
    {/* Links */}
    <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
     <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-16">
