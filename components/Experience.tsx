@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Environment, Lightformer, ContactShadows, OrthographicCamera, CameraControls, RoundedBox, Float, Preload, useProgress } from '@react-three/drei';
 import { PROJECTS, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_DATA } from '../constants';
-import { DeviceType, Project, ScreenRect } from '../types';
-import { SCENE_OFFSET, DESK, CAMERA, DEVICES, FLOATING_ICONS, OBSTACLES, ObsDef } from './sceneLayout';
+import { DeviceType, Project } from '../types';
+import { SCENE_OFFSET, DESK, CAMERA, DEVICES, FLOATING_ICONS } from './sceneLayout';
 import { XRHeadset, MobilePhone, Watch, Monitor, Headphone, Publication } from './DeviceObjects';
 import FloatingIcons from './FloatingIcons';
 import * as THREE from 'three';
@@ -11,74 +11,12 @@ import * as THREE from 'three';
 interface ExperienceProps {
   currentProjectId: string | null;
   onProjectSelect: (project: Project | null) => void;
-  onObstacleUpdate?: (rects: ScreenRect[]) => void;
   onReady?: () => void;
   // 로딩 % 를 바깥(UIOverlay)으로 올려준다. useProgress를 UIOverlay에서 직접
   // 부르면 drei가 메인 번들에 정적으로 딸려와 코드 스플리팅이 무효가 된다.
   onProgress?: (progress: number) => void;
 }
 
-// ---------- Obstacle Tracker ----------
-
-
-// Project a world-space axis-aligned box onto screen space by projecting all 8 corners.
-function projectBox(
-  lp: [number, number, number], hs: [number, number, number],
-  off: [number, number, number], cam: THREE.Camera,
-  cvs: { width: number; height: number }, v: THREE.Vector3,
-  margin = 8,
-): ScreenRect {
-  let mnX = Infinity, mxX = -Infinity, mnY = Infinity, mxY = -Infinity;
-  for (const dx of [-1, 1]) for (const dy of [-1, 1]) for (const dz of [-1, 1]) {
-    v.set(lp[0] + dx * hs[0] + off[0], lp[1] + dy * hs[1] + off[1], lp[2] + dz * hs[2] + off[2]);
-    v.project(cam);
-    const px = (v.x + 1) / 2 * cvs.width, py = (-v.y + 1) / 2 * cvs.height;
-    if (px < mnX) mnX = px; if (px > mxX) mxX = px;
-    if (py < mnY) mnY = py; if (py > mxY) mxY = py;
-  }
-  return { x: mnX - margin, y: mnY - margin, w: mxX - mnX + margin * 2, h: mxY - mnY + margin * 2 };
-}
-
-// Project a sphere obstacle using zoom × world-radius as screen radius.
-function projectSphere(
-  lp: [number, number, number], r: number,
-  off: [number, number, number], cam: THREE.Camera,
-  cvs: { width: number; height: number }, v: THREE.Vector3,
-): ScreenRect {
-  v.set(lp[0] + off[0], lp[1] + off[1], lp[2] + off[2]);
-  v.project(cam);
-  const cx = (v.x + 1) / 2 * cvs.width, cy = (-v.y + 1) / 2 * cvs.height;
-  const sr = r * ((cam as THREE.OrthographicCamera).zoom ?? 60);
-  return { x: cx - sr, y: cy - sr, w: sr * 2, h: sr * 2 };
-}
-
-interface ObstacleTrackerProps {
-  sceneOffset: [number, number, number];
-  onUpdate: (rects: ScreenRect[]) => void;
-}
-
-const ObstacleTracker: React.FC<ObstacleTrackerProps> = ({ sceneOffset, onUpdate }) => {
-  const { camera, size } = useThree();
-  const tickRef = useRef(0);
-  const v = useMemo(() => new THREE.Vector3(), []);
-
-  useFrame(({ clock }) => {
-    const t = clock.getElapsedTime();
-    if (t - tickRef.current < 0.083) return; // ~12 fps
-
-    tickRef.current = t;
-    const rects: ScreenRect[] = OBSTACLES.map(def =>
-      def.kind === 'box'
-        ? projectBox(def.lp, def.hs, sceneOffset, camera, size, v)
-        : projectSphere(def.lp, def.r, sceneOffset, camera, size, v),
-    );
-    onUpdate(rects);
-  });
-
-  return null;
-};
-
-// 포커스 타깃은 sceneLayout의 기기 정의에서 그대로 끌어온다
 const FOCUS_TARGETS: { [key: string]: { target: [number, number, number]; zoom: number } } =
   Object.fromEntries(Object.entries(DEVICES).map(([id, d]) => [id, d.focus]));
 
@@ -261,7 +199,7 @@ interface SceneContentProps extends ExperienceProps {
   setHoveredId: (id: string | null) => void;
 }
 
-const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProjectSelect, hoveredId, setHoveredId, onObstacleUpdate, onReady }) => {
+const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProjectSelect, hoveredId, setHoveredId, onReady }) => {
   const controlsRef = useRef<CameraControls>(null);
   const [sceneOffset, setSceneOffset] = useState<[number, number, number]>(SCENE_OFFSET);
 
@@ -483,10 +421,6 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
         </group>
       </group>
 
-      {/* Reports 3D device screen projections to 2D text layout each frame */}
-      {onObstacleUpdate && (
-        <ObstacleTracker sceneOffset={sceneOffset} onUpdate={onObstacleUpdate} />
-      )}
     </>
   );
 };

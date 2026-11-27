@@ -18,12 +18,6 @@ export interface Project {
 }
 
 // Screen-space rectangle used to pass 3D object projections to 2D text layout
-export type ScreenRect = {
-  x: number; // left edge in canvas CSS pixels
-  y: number; // top edge in canvas CSS pixels
-  w: number;
-  h: number;
-};
 
 export interface WorkItem {
   id: string;

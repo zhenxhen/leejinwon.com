@@ -13,10 +13,6 @@
 
 export type V3 = [number, number, number];
 
-export type BoxObstacle = { kind: 'box'; lp: V3; hs: V3 };
-export type SphereObstacle = { kind: 'sphere'; lp: V3; r: number };
-export type ObsDef = BoxObstacle | SphereObstacle;
-
 // ───────────────────────── 씬 ─────────────────────────
 export const SCENE_OFFSET: V3 = [0, 1, 0];
 
@@ -62,8 +58,6 @@ export type DeviceLayout = {
  selectedY: number;
  /** 클릭 시 카메라가 잡는 지점 */
  focus: { target: V3; zoom: number };
- /** 본문 텍스트가 피해 가야 할 영역 */
- obstacle: ObsDef;
 };
 
 export const DEVICES: Record<string, DeviceLayout> = {
@@ -75,7 +69,6 @@ export const DEVICES: Record<string, DeviceLayout> = {
  tilt: [-0.5, -1.5, 0],
  selectedY: 0,
  focus: { target: [-3.5, 1.55, 0], zoom: 90 },
- obstacle: { kind: 'sphere', lp: [0, SURFACE_Y + 1.0, -0.5], r: 1.3 },
  },
 
  'mobile-music': {
@@ -86,7 +79,6 @@ export const DEVICES: Record<string, DeviceLayout> = {
  tilt: [-2.4, Math.PI / 2 + Math.PI + 2.7, 1.2],
  selectedY: 0.7,
  focus: { target: [-0.2, 0.05, -1], zoom: 100 },
- obstacle: { kind: 'sphere', lp: [-1.2, 0.25, 0.8], r: 0.9 },
  },
 
  'watch-alarm': {
@@ -97,7 +89,6 @@ export const DEVICES: Record<string, DeviceLayout> = {
  tilt: [-Math.PI / 2 - 0.5, Math.PI / 2 + Math.PI + 1, -1.5],
  selectedY: 0.4,
  focus: { target: [3.5, 0.38, -0.8], zoom: 130 },
- obstacle: { kind: 'sphere', lp: [0.2, 0.18, 1.2], r: 0.8 },
  },
 
  monitor: {
@@ -108,7 +99,6 @@ export const DEVICES: Record<string, DeviceLayout> = {
  tilt: [0, 0, 0],
  selectedY: 0.2,
  focus: { target: [0, 1.4, -1.0], zoom: 110 },
- obstacle: { kind: 'box', lp: [0, SURFACE_Y, -1.5], hs: [1.3, 1.4, 0.6] },
  },
 
  headphone: {
@@ -119,7 +109,6 @@ export const DEVICES: Record<string, DeviceLayout> = {
  tilt: [Math.PI / 2, Math.PI + Math.PI / 2, Math.PI / 2],
  selectedY: 1,
  focus: { target: [4, 0.37, 0.1], zoom: 90 },
- obstacle: { kind: 'sphere', lp: [4, SURFACE_Y, 1.5], r: 1.4 },
  },
 
  publication: {
@@ -130,8 +119,6 @@ export const DEVICES: Record<string, DeviceLayout> = {
  tilt: [0.5, -0.3, 0],
  selectedY: 0.7,
  focus: { target: [0, 0.5, -0.1], zoom: 90 },
- // 책이 놓인 자리보다 살짝 앞을 막는다 (텍스트가 표지를 덮지 않게)
- obstacle: { kind: 'sphere', lp: [0, SURFACE_Y, 0.3], r: 1.0 },
  },
 };
 
@@ -141,21 +128,8 @@ export const FLOATING_ICONS = {
  /** 카드 높이. 가로는 텍스처 비율로 정해진다 */
  height: 1.25,
  items: [
- { key: 'calendar', position: [-3, -1, -0.5] as V3, obstacle: { kind: 'sphere', lp: [-3, 1.0, -2.5], r: 1.3 } as ObsDef },
- { key: 'clock', position: [-1.5, 1, 0] as V3, obstacle: { kind: 'sphere', lp: [-1.5, 3.0, -2.0], r: 1.1 } as ObsDef },
- { key: 'reminder', position: [2, 0.5, 0.5] as V3, obstacle: { kind: 'sphere', lp: [2, 2.5, -1.5], r: 1.1 } as ObsDef },
+ { key: 'calendar', position: [-3, -1, -0.5] as V3 },
+ { key: 'clock', position: [-1.5, 1, 0] as V3 },
+ { key: 'reminder', position: [2, 0.5, 0.5] as V3 },
  ],
 } as const;
-
-// ───────────────────── 장애물 전체 ─────────────────────
-/** 책상 자체 — 기기와 달리 group이 없어 직접 적는다 */
-const DESK_OBSTACLES: ObsDef[] = [
- { kind: 'box', lp: [0, SURFACE_Y, 0], hs: [5, 0.12, 2] },   // 상판
- { kind: 'box', lp: [0, -1.5, 0], hs: [4.3, 1.6, 1.8] },  // 프레임·다리
-];
-
-export const OBSTACLES: ObsDef[] = [
- ...DESK_OBSTACLES,
- ...Object.values(DEVICES).map(d => d.obstacle),
- ...FLOATING_ICONS.items.map(i => i.obstacle),
-];

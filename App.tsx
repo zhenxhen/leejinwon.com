@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from
 import { UIOverlay } from './components/UIOverlay';
 import { Sidebar } from './components/Sidebar';
 import { ProjectList } from './components/ProjectList';
-import { Project, ScreenRect } from './types';
+import { Project } from './types';
 
 // three + drei + react-three-fiber는 메인 번들에서 떼어낸다.
 // 사이드바와 히어로 텍스트는 이 청크를 기다리지 않고 바로 그려지고,
@@ -26,7 +26,6 @@ import { PROJECTS, NAVIGATION_ORDER, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_D
 
 const MainLayout: React.FC = () => {
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
-  const [obstacleRects, setObstacleRects] = useState<ScreenRect[]>([]);
   const [isExperienceReady, setIsExperienceReady] = useState(false);
   const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
@@ -71,7 +70,6 @@ const MainLayout: React.FC = () => {
                   <Experience
                     currentProjectId={currentProject?.id || null}
                     onProjectSelect={handleProjectSelect}
-                    onObstacleUpdate={setObstacleRects}
                     onReady={() => setIsExperienceReady(true)}
                     onProgress={setProgress}
                   />
@@ -88,7 +86,6 @@ const MainLayout: React.FC = () => {
               {/* UI Overlay */}
               <UIOverlay
                 selectedProject={currentProject}
-                obstacleRects={obstacleRects}
                 onClose={() => setCurrentProject(null)}
                 onNext={() => {
                   if (!currentProject) return;
