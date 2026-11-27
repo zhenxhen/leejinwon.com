@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Environment, ContactShadows, OrthographicCamera, CameraControls, RoundedBox, Float, Preload } from '@react-three/drei';
+import { Environment, Lightformer, ContactShadows, OrthographicCamera, CameraControls, RoundedBox, Float, Preload } from '@react-three/drei';
 import { PROJECTS, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_DATA } from '../constants';
 import { DeviceType, Project, ScreenRect } from '../types';
 import { XRHeadset, MobilePhone, Watch, Monitor, Headphone, Publication } from './DeviceObjects';
@@ -130,7 +130,66 @@ const LightingController = () => {
       <directionalLight position={[0, 5, 30]} intensity={5} color="#eef2ff" />
 
 
-      <Environment preset="studio" blur={1} background={false} environmentIntensity={0.5} />
+      {/*
+        이전: <Environment preset="studio" /> — drei가 raw.githack.com에서
+        studio_small_03_1k.hdr(1.68MB, cache-control 5분)을 매번 받아왔고,
+        그게 끝나기 전엔 Suspense가 풀리지 않아 3D가 아예 안 떴다.
+        아래는 같은 스튜디오 룩을 Lightformer로 직접 구성한 것. 네트워크 요청 0바이트.
+      */}
+      <Environment resolution={256} background={false} environmentIntensity={0.5}>
+        {/* 상단 대형 소프트박스 (키 라이트) */}
+        <Lightformer
+          form="rect"
+          intensity={3}
+          position={[0, 8, 0]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={[14, 14, 1]}
+          color="#ffffff"
+        />
+        {/* 정면 필 — 기기 전면을 밝게 */}
+        <Lightformer
+          form="rect"
+          intensity={1.8}
+          position={[0, 2, 10]}
+          scale={[16, 9, 1]}
+          color="#f6f8ff"
+        />
+        {/* 좌우 반사 스트립 — 금속/글래스 하이라이트 */}
+        <Lightformer
+          form="rect"
+          intensity={2.2}
+          position={[-10, 2, 2]}
+          rotation={[0, Math.PI / 2, 0]}
+          scale={[12, 7, 1]}
+          color="#ffffff"
+        />
+        <Lightformer
+          form="rect"
+          intensity={2.2}
+          position={[10, 2, 2]}
+          rotation={[0, -Math.PI / 2, 0]}
+          scale={[12, 7, 1]}
+          color="#eef2ff"
+        />
+        {/* 후면 림 라이트 */}
+        <Lightformer
+          form="rect"
+          intensity={1.2}
+          position={[0, 4, -10]}
+          rotation={[0, Math.PI, 0]}
+          scale={[14, 7, 1]}
+          color="#ffffff"
+        />
+        {/* 바닥 바운스 — 흰 책상 반사 */}
+        <Lightformer
+          form="rect"
+          intensity={0.8}
+          position={[0, -4, 0]}
+          rotation={[Math.PI / 2, 0, 0]}
+          scale={[14, 14, 1]}
+          color="#ffffff"
+        />
+      </Environment>
     </>
   );
 };

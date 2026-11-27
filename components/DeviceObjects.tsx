@@ -5,6 +5,12 @@ import * as THREE from 'three';
 
 import { DeviceType } from '../types';
 
+// Draco 디코더를 자체 호스팅한다.
+// 기본값은 https://www.gstatic.com/draco/versioned/decoders/… 로, 모델을 풀기 전에
+// 외부 도메인으로 DNS+TLS+요청 왕복이 한 번 더 생긴다. same-origin으로 바꾸면
+// 번들과 같은 커넥션을 쓰고 브라우저 캐시도 길게 먹는다.
+const DRACO_PATH = `${import.meta.env.BASE_URL}draco/`;
+
 interface DeviceProps {
  type: DeviceType;
  color: string;
@@ -63,7 +69,7 @@ const useHoverAnimation = (
 };
 
 export const XRHeadset: React.FC<DeviceProps> = ({ color, roughness, isSelected, isHovered, onClick, onPointerOver, onPointerOut }) => {
- const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/XR.glb`);
+ const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/XR.glb`, DRACO_PATH);
  const initialY = -.8;
  const baseRotation: [number, number, number] = [0, -0.9, 0];
  const tiltRotation: [number, number, number] = [-.5, -1.5, 0];
@@ -103,7 +109,7 @@ export const XRHeadset: React.FC<DeviceProps> = ({ color, roughness, isSelected,
 
 
 export const MobilePhone: React.FC<DeviceProps> = ({ color, roughness, isSelected, isHovered, onClick, onPointerOver, onPointerOut }) => {
- const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/phone.glb`);
+ const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/phone.glb`, DRACO_PATH);
  const initialY = -.15;
  const baseRotation: [number, number, number] = [0, Math.PI / 2 + Math.PI, Math.PI / 2];
  const tiltRotation: [number, number, number] = [-2.4, Math.PI / 2 + Math.PI + 2.7, 1.2]; // Tilt forward (negative X)
@@ -141,7 +147,7 @@ export const MobilePhone: React.FC<DeviceProps> = ({ color, roughness, isSelecte
 };
 
 export const Watch: React.FC<DeviceProps> = ({ color, roughness, isSelected, isHovered, onClick, onPointerOver, onPointerOut }) => {
- const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/smartwatch.glb`);
+ const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/smartwatch.glb`, DRACO_PATH);
  const initialY = 0.07;
  const baseRotation: [number, number, number] = [0, 1 + Math.PI, .2];
  const tiltRotation: [number, number, number] = [-Math.PI / 2 - 0.5, Math.PI / 2 + Math.PI + 1, -1.5]; // Tilt forward
@@ -178,7 +184,7 @@ export const Watch: React.FC<DeviceProps> = ({ color, roughness, isSelected, isH
 };
 
 export const Monitor: React.FC<DeviceProps> = ({ isSelected, roughness, isHovered, onClick, onPointerOver, onPointerOut }) => {
- const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/monitor.glb`);
+ const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/monitor.glb`, DRACO_PATH);
  const initialY = 0;
  const baseRotation: [number, number, number] = [0, 0, 0];
  const tiltRotation: [number, number, number] = [0, 0, 0];
@@ -214,7 +220,7 @@ export const Monitor: React.FC<DeviceProps> = ({ isSelected, roughness, isHovere
 };
 
 export const Headphone: React.FC<DeviceProps> = ({ isSelected, roughness, isHovered, onClick, onPointerOver, onPointerOut }) => {
- const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/headphone.glb`);
+ const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/headphone.glb`, DRACO_PATH);
  const initialY = .27;
  const baseRotation: [number, number, number] = [0, Math.PI / 2 + 2, Math.PI / 2 + .2];
  const tiltRotation: [number, number, number] = [Math.PI / 2, Math.PI + Math.PI / 2, Math.PI / 2];
@@ -250,7 +256,7 @@ export const Headphone: React.FC<DeviceProps> = ({ isSelected, roughness, isHove
 };
 
 export const Publication: React.FC<DeviceProps> = ({ isSelected, roughness, isHovered, onClick, onPointerOver, onPointerOut }) => {
- const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/news.glb`);
+ const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/news.glb`, DRACO_PATH);
  const initialY = 0;
  const baseRotation: [number, number, number] = [0, -0.3, 0];
  const tiltRotation: [number, number, number] = [.5, -0.3, 0];
@@ -285,9 +291,9 @@ export const Publication: React.FC<DeviceProps> = ({ isSelected, roughness, isHo
 };
 
 // Preload all GLB models so they start downloading before Suspense mounts
-useGLTF.preload(`${import.meta.env.BASE_URL}models/XR.glb`);
-useGLTF.preload(`${import.meta.env.BASE_URL}models/phone.glb`);
-useGLTF.preload(`${import.meta.env.BASE_URL}models/smartwatch.glb`);
-useGLTF.preload(`${import.meta.env.BASE_URL}models/monitor.glb`);
-useGLTF.preload(`${import.meta.env.BASE_URL}models/headphone.glb`);
-useGLTF.preload(`${import.meta.env.BASE_URL}models/news.glb`);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/XR.glb`, DRACO_PATH);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/phone.glb`, DRACO_PATH);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/smartwatch.glb`, DRACO_PATH);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/monitor.glb`, DRACO_PATH);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/headphone.glb`, DRACO_PATH);
+useGLTF.preload(`${import.meta.env.BASE_URL}models/news.glb`, DRACO_PATH);
