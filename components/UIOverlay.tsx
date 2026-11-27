@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Project, ScreenRect } from '../types';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useProgress } from '@react-three/drei';
+// useProgress를 여기서 import하면 drei -> r3f -> three가 통째로 메인 번들에
+// 정적 의존으로 끌려와, 사이드바 글자 한 줄 그리는 데도 3D 번들 전체를
+// 기다리게 된다. 진행률은 lazy로 분리된 Experience 쪽에서 받아 쓴다.
 import { prepareWithSegments, layoutNextLine } from '@chenglou/pretext';
 import type { LayoutCursor } from '@chenglou/pretext';
 
@@ -14,6 +16,7 @@ interface UIOverlayProps {
  totalCount: number;
  obstacleRects: ScreenRect[];
  isExperienceReady: boolean;
+ progress: number;
 }
 
 // ---------- pretext layout (project details only) ----------
@@ -142,9 +145,9 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({
  totalCount,
  obstacleRects,
  isExperienceReady,
+ progress,
 }) => {
  const [isVisible, setIsVisible] = useState(false);
-  const { progress } = useProgress();
  const [hasLoaded, setHasLoaded] = useState(false);
 
  useEffect(() => {
