@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Environment, Lightformer, ContactShadows, OrthographicCamera, CameraControls, RoundedBox, Float, Preload } from '@react-three/drei';
+import { Environment, Lightformer, ContactShadows, OrthographicCamera, CameraControls, RoundedBox, Float, Preload, useProgress } from '@react-three/drei';
 import { PROJECTS, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_DATA } from '../constants';
 import { DeviceType, Project, ScreenRect } from '../types';
 import { XRHeadset, MobilePhone, Watch, Monitor, Headphone, Publication } from './DeviceObjects';
@@ -12,6 +12,9 @@ interface ExperienceProps {
   onProjectSelect: (project: Project | null) => void;
   onObstacleUpdate?: (rects: ScreenRect[]) => void;
   onReady?: () => void;
+  // 로딩 % 를 바깥(UIOverlay)으로 올려준다. useProgress를 UIOverlay에서 직접
+  // 부르면 drei가 메인 번들에 정적으로 딸려와 코드 스플리팅이 무효가 된다.
+  onProgress?: (progress: number) => void;
 }
 
 // ---------- Obstacle Tracker ----------
@@ -527,6 +530,11 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
 
 export const Experience: React.FC<ExperienceProps> = (props) => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+
+  // 이 컴포넌트는 lazy 청크 안에 있으므로 여기서 useProgress를 쓰는 건 공짜다.
+  const { progress } = useProgress();
+  const { onProgress } = props;
+  useEffect(() => { onProgress?.(progress); }, [progress, onProgress]);
   const tooltipRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
