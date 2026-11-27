@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
+import { FLOATING_ICONS } from './sceneLayout';
 
 // useLoader를 세 번 따로 부르면 호출마다 Suspense가 걸려
 // 앞 텍스처가 끝나야 다음 요청이 나가는 폭포(waterfall)가 된다. 배열로 넘겨 병렬화한다.
@@ -28,25 +29,25 @@ const FloatingIcons: React.FC = () => {
  const clockRatio = clockTex.image.width / clockTex.image.height;
  const reminderRatio = reminderTex.image.width / reminderTex.image.height;
 
- // Base height for consistency
- const height = 1.25;
+ const { group, height, items } = FLOATING_ICONS;
+ const pos = (k: string) => items.find(i => i.key === k)!.position;
 
  return (
- <group position={[0, 2, -2]}>
+ <group position={group}>
   {/* Calendar */}
-  <mesh position={[-3, -1, -.5]}>
+  <mesh position={pos('calendar')}>
   <planeGeometry args={[height * calendarRatio, height]} />
   <meshBasicMaterial map={calendarTex} transparent side={THREE.DoubleSide} toneMapped={false} color="white" />
   </mesh>
 
   {/* Clock */}
-  <mesh position={[-1.5, 1, 0]}>
+  <mesh position={pos('clock')}>
   <planeGeometry args={[height * clockRatio, height]} />
   <meshBasicMaterial map={clockTex} transparent side={THREE.DoubleSide} toneMapped={false} color="white" />
   </mesh>
 
   {/* Reminder */}
-  <mesh position={[2, .5, .5]}>
+  <mesh position={pos('reminder')}>
   <planeGeometry args={[height * reminderRatio, height]} />
   <meshBasicMaterial map={reminderTex} transparent side={THREE.DoubleSide} toneMapped={false} color="white" />
   </mesh>

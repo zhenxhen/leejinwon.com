@@ -15,7 +15,6 @@ export interface Project {
 
   details: string; // Static detailed description
   color: string;
-  position: [number, number, number];
 }
 
 // Screen-space rectangle used to pass 3D object projections to 2D text layout

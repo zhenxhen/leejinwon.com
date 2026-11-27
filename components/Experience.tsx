@@ -3,6 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Environment, Lightformer, ContactShadows, OrthographicCamera, CameraControls, RoundedBox, Float, Preload, useProgress } from '@react-three/drei';
 import { PROJECTS, MONITOR_DATA, HEADPHONE_DATA, PUBLICATION_DATA } from '../constants';
 import { DeviceType, Project, ScreenRect } from '../types';
+import { SCENE_OFFSET, DESK, CAMERA, DEVICES, FLOATING_ICONS, OBSTACLES, ObsDef } from './sceneLayout';
 import { XRHeadset, MobilePhone, Watch, Monitor, Headphone, Publication } from './DeviceObjects';
 import FloatingIcons from './FloatingIcons';
 import * as THREE from 'three';
@@ -19,31 +20,6 @@ interface ExperienceProps {
 
 // ---------- Obstacle Tracker ----------
 
-type BoxDef = { kind: 'box'; lp: [number, number, number]; hs: [number, number, number] };
-type SphereDef = { kind: 'sphere'; lp: [number, number, number]; r: number };
-type ObsDef = BoxDef | SphereDef;
-
-// All positions are LOCAL within the sceneOffset group.
-// Monitor/Headphone: group at [x, 0.1, z] inside sceneOffset
-// Projects group: [0, 0.1, 0] + project.position
-// FloatingIcons: group at [0, 2, -2]
-const OBSTACLE_DEFS: ObsDef[] = [
-  // ── Desk surface (box projection = accurate screen rect) ──────
-  { kind: 'box', lp: [0, 0.1, 0], hs: [5, 0.12, 2] }, // desk top
-  { kind: 'box', lp: [0, -1.5, 0], hs: [4.3, 1.6, 1.8] }, // desk frame & legs
-  // ── Static devices ────────────────────────────────────────────
-  { kind: 'box', lp: [0, 0.1, -1.5], hs: [1.3, 1.4, 0.6] }, // Monitor
-  { kind: 'sphere', lp: [4, 0.1, 1.5], r: 1.4 },  // Headphone
-  { kind: 'sphere', lp: [0, 0.1, 0.3], r: 1.0 },  // Publication
-  // ── Project devices ───────────────────────────────────────────
-  { kind: 'sphere', lp: [0, 0.1 + 1.0, -0.5], r: 1.3 }, // XR Headset
-  { kind: 'sphere', lp: [-1.2, 0.25, 0.8], r: 0.9 }, // Mobile
-  { kind: 'sphere', lp: [0.2, 0.18, 1.2], r: 0.8 }, // Watch
-  // ── Floating icons (group [0,2,-2] + mesh offsets) ────────────
-  { kind: 'sphere', lp: [-3, 1.0, -2.5], r: 1.3 }, // Calendar
-  { kind: 'sphere', lp: [-1.5, 3.0, -2.0], r: 1.1 }, // Clock
-  { kind: 'sphere', lp: [2, 2.5, -1.5], r: 1.1 }, // Reminder
-];
 
 // Project a world-space axis-aligned box onto screen space by projecting all 8 corners.
 function projectBox(
@@ -91,7 +67,7 @@ const ObstacleTracker: React.FC<ObstacleTrackerProps> = ({ sceneOffset, onUpdate
     if (t - tickRef.current < 0.083) return; // ~12 fps
 
     tickRef.current = t;
-    const rects: ScreenRect[] = OBSTACLE_DEFS.map(def =>
+    const rects: ScreenRect[] = OBSTACLES.map(def =>
       def.kind === 'box'
         ? projectBox(def.lp, def.hs, sceneOffset, camera, size, v)
         : projectSphere(def.lp, def.r, sceneOffset, camera, size, v),
@@ -102,18 +78,9 @@ const ObstacleTracker: React.FC<ObstacleTrackerProps> = ({ sceneOffset, onUpdate
   return null;
 };
 
-// Focus Targets for Camera Animation (Calculated from Group + Internal Offsets)
-const FOCUS_TARGETS: { [key: string]: { target: [number, number, number], zoom: number } } = {
-  // Hardcoded Objects
-  'monitor': { target: [0, 1.4, -1.0], zoom: 110 },
-  'publication': { target: [0, 0.5, -0.1], zoom: 90 },
-  'headphone': { target: [4, 0.37, 0.1], zoom: 90 },
-
-  // Dynamic Projects (Project Position + Device Internal Position)
-  'xr-calendar': { target: [-3.5, 1.55, 0], zoom: 90 },
-  'mobile-music': { target: [-0.2, 0.05, -1], zoom: 100 },
-  'watch-alarm': { target: [3.5, 0.38, -0.8], zoom: 130 },
-};
+// 포커스 타깃은 sceneLayout의 기기 정의에서 그대로 끌어온다
+const FOCUS_TARGETS: { [key: string]: { target: [number, number, number]; zoom: number } } =
+  Object.fromEntries(Object.entries(DEVICES).map(([id, d]) => [id, d.focus]));
 
 // Lighting Controller - Static Studio Lighting
 const LightingController = () => {
@@ -198,18 +165,13 @@ const LightingController = () => {
 };
 
 const DeskEnvironment = () => {
-  const legRadius = 0.04; // Thin tubular steel
-  const legHeight = 3;
-  const deskWidth = 10;
-  const deskDepth = 4;
-  const frameWidth = 3; // Depth of the side frame
-  const frameOffset = 4; // X-offset for side frames
+  const { legRadius, legHeight, width: deskWidth, depth: deskDepth, frameWidth, frameOffset } = DESK;
   const materialProps = { color: "#e2e8f0", roughness: .5, metalness: .1 }; // Chrome-like
 
   return (
     <group position={[0, 0, 0]}>
       {/* Desk Top - Clean White */}
-      <RoundedBox args={[deskWidth, 0.2, deskDepth]} radius={0.02} smoothness={4} position={[0, 0, 0]} receiveShadow castShadow>
+      <RoundedBox args={[deskWidth, DESK.topThickness, deskDepth]} radius={DESK.topRadius} smoothness={4} position={[0, 0, 0]} receiveShadow castShadow>
         <meshStandardMaterial color="#f8fafc" roughness={0.1} metalness={0.1} />
       </RoundedBox>
 
@@ -301,7 +263,7 @@ interface SceneContentProps extends ExperienceProps {
 
 const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProjectSelect, hoveredId, setHoveredId, onObstacleUpdate, onReady }) => {
   const controlsRef = useRef<CameraControls>(null);
-  const [sceneOffset, setSceneOffset] = useState<[number, number, number]>([0, 1, 0]);
+  const [sceneOffset, setSceneOffset] = useState<[number, number, number]>(SCENE_OFFSET);
 
   // Handle responsive scene position
   useEffect(() => {
@@ -420,16 +382,16 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
         ref={controlsRef}
         // polarAngle={Math.PI / 2}
         // azimuthAngle={0}
-        minZoom={20}
-        maxZoom={150}
-        minPolarAngle={1}
-        maxPolarAngle={Math.PI / 2}
-        minAzimuthAngle={-1}
-        maxAzimuthAngle={1}
+        minZoom={CAMERA.minZoom}
+        maxZoom={CAMERA.maxZoom}
+        minPolarAngle={CAMERA.minPolarAngle}
+        maxPolarAngle={CAMERA.maxPolarAngle}
+        minAzimuthAngle={CAMERA.minAzimuthAngle}
+        maxAzimuthAngle={CAMERA.maxAzimuthAngle}
         dollySpeed={0} // Disable Scroll Zoom via speed
         mouseButtons={{ left: 1, middle: 0, right: 0, wheel: 0 }} // Disable wheel capture to allow page scroll
         touches={{ one: 1, two: 0, three: 0 }} // Enable touch rotation (1=ROTATE) to match mouse
-        smoothTime={0.4} // Improved responsiveness while maintaining smoothness
+        smoothTime={CAMERA.smoothTime}
         enabled={true}
       />
 
@@ -439,7 +401,7 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
         <DeskEnvironment />
 
         {/* Publication */}
-        <group position={[0, 0.1, -0.1]}>
+        <group position={DEVICES.publication.mount}>
           <Publication
             type={DeviceType.PUBLICATION}
             color="#000000"
@@ -455,7 +417,7 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
         </group>
 
         {/* Monitor - Static Central Piece */}
-        <group position={[0, 0.1, -1.5]}>
+        <group position={DEVICES.monitor.mount}>
           <Monitor
             type={DeviceType.MONITOR}
             color="#000000"
@@ -470,7 +432,7 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
           />
         </group>
 
-        <group position={[4, 0.1, 1.5]}>
+        <group position={DEVICES.headphone.mount}>
           <Headphone
             type={DeviceType.HEADPHONE}
             color="#000000"
@@ -490,7 +452,8 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
         <FloatingIcons />
 
         {/* Render Projects */}
-        <group position={[0, 0.1, 0]}>
+        {/* 높이는 각 기기 mount(SURFACE_Y 포함)가 가지므로 여기서 더하지 않는다 */}
+        <group>
           {PROJECTS.map((project) => {
             const isSelected = currentProjectId === project.id;
 
@@ -510,7 +473,7 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
             };
 
             return (
-              <group key={project.id} position={project.position}>
+              <group key={project.id} position={DEVICES[project.id].mount}>
                 {project.deviceType === DeviceType.XR_HEADSET && <XRHeadset {...commonProps} />}
                 {project.deviceType === DeviceType.MOBILE && <MobilePhone {...commonProps} />}
                 {project.deviceType === DeviceType.WATCH && <Watch {...commonProps} />}

@@ -9,7 +9,6 @@ export const PLATFORM_CONCEPTS: Project[] = [
 
     details: 'An infinite canvas that transcends physical boundaries. It provides deep immersion through natural interaction with your gaze and gestures.',
     color: '#8b5cf6', // Violet
-    position: [0, 1.0, -0.5] // Floating above desk center
   },
   {
     id: 'mobile-music',
@@ -18,7 +17,6 @@ export const PLATFORM_CONCEPTS: Project[] = [
     deviceType: DeviceType.MOBILE,
     details: 'The most personal and immediate device. It provides new experiences intuitively and efficiently within the user\'s daily life.',
     color: '#ec4899', // Pink
-    position: [-1.2, 0.15, 0.8] // Front left on desk
   },
 
   {
@@ -29,7 +27,6 @@ export const PLATFORM_CONCEPTS: Project[] = [
 
     details: 'The device that understands your context most intimately. Managing user data, it accompanies you through your daily life.',
     color: '#10b981', // Emerald
-    position: [0.2, 0.08, 1.2] // Front center on desk
   }
 ];
 
@@ -43,8 +40,7 @@ export const MONITOR_DATA: Project = {
   deviceType: DeviceType.MONITOR,
 
   details: 'Delivers digital experiences that satisfy both performance and aesthetics by leveraging the latest web standards technologies.',
-  color: '#000000',
-  position: [0, 0, 0] // Static position handled in Experience
+  color: '#000000'
 };
 
 export const HEADPHONE_DATA: Project = {
@@ -54,8 +50,7 @@ export const HEADPHONE_DATA: Project = {
   deviceType: DeviceType.HEADPHONE,
 
   details: 'Personal Interactive Lab. Explore a collection of synesthetic digital artworks combining music, sound effects, and visual elements.',
-  color: '#333333',
-  position: [0, 0, 0] // Static position handled in Experience
+  color: '#333333'
 };
 
 export const PUBLICATION_DATA: Project = {
@@ -65,8 +60,7 @@ export const PUBLICATION_DATA: Project = {
   deviceType: DeviceType.PUBLICATION,
 
   details: 'A collection of magazines, news, or invited talks featuring my works and thoughts on design and technology.',
-  color: '#444444',
-  position: [0, 0, 0] // Static position like Monitor
+  color: '#444444'
 };
 
 export const NAVIGATION_ORDER = [

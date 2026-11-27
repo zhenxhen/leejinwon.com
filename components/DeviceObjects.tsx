@@ -4,6 +4,7 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 import { DeviceType } from '../types';
+import { DEVICES } from './sceneLayout';
 
 // Draco 디코더를 자체 호스팅한다.
 // 기본값은 https://www.gstatic.com/draco/versioned/decoders/… 로, 모델을 풀기 전에
@@ -70,10 +71,10 @@ const useHoverAnimation = (
 
 export const XRHeadset: React.FC<DeviceProps> = ({ color, roughness, isSelected, isHovered, onClick, onPointerOver, onPointerOut }) => {
  const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/XR.glb`, DRACO_PATH);
- const initialY = -.8;
- const baseRotation: [number, number, number] = [0, -0.9, 0];
- const tiltRotation: [number, number, number] = [-.5, -1.5, 0];
- const groupRef = useHoverAnimation(initialY, isHovered, isSelected, baseRotation, tiltRotation, 0);
+ const layout = DEVICES['xr-calendar'];
+ const groupRef = useHoverAnimation(
+  layout.local[1], isHovered, isSelected, layout.rotation, layout.tilt, layout.selectedY
+ );
 
  const clone = useMemo(() => {
  const c = scene.clone();
@@ -93,12 +94,12 @@ export const XRHeadset: React.FC<DeviceProps> = ({ color, roughness, isSelected,
  onClick={onClick}
  onPointerOver={onPointerOver}
  onPointerOut={onPointerOut}
- position={[-3.5, initialY, 0.3]} // Resting position
- rotation={baseRotation}
+ position={layout.local}
+ rotation={layout.rotation}
  >
  <primitive
  object={clone}
- scale={2.6}
+ scale={layout.scale}
  />
  </group>
  );
@@ -110,11 +111,10 @@ export const XRHeadset: React.FC<DeviceProps> = ({ color, roughness, isSelected,
 
 export const MobilePhone: React.FC<DeviceProps> = ({ color, roughness, isSelected, isHovered, onClick, onPointerOver, onPointerOut }) => {
  const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/phone.glb`, DRACO_PATH);
- const initialY = -.15;
- const baseRotation: [number, number, number] = [0, Math.PI / 2 + Math.PI, Math.PI / 2];
- const tiltRotation: [number, number, number] = [-2.4, Math.PI / 2 + Math.PI + 2.7, 1.2]; // Tilt forward (negative X)
- // const tiltRotation: [number, number, number] = [Math.PI - 1, Math.PI / 2 + Math.PI + 3, Math.PI]; // Tilt forward (negative X)
- const groupRef = useHoverAnimation(initialY, isHovered, isSelected, baseRotation, tiltRotation, 0.7);
+ const layout = DEVICES['mobile-music'];
+ const groupRef = useHoverAnimation(
+  layout.local[1], isHovered, isSelected, layout.rotation, layout.tilt, layout.selectedY
+ );
 
  // Clone the scene to allow independent rendering if used multiple times
  const clone = useMemo(() => {
@@ -132,15 +132,15 @@ export const MobilePhone: React.FC<DeviceProps> = ({ color, roughness, isSelecte
  return (
  <group
  ref={groupRef}
- position={[-0.2, initialY, -1]} // Phone GLB likely has its own centering, adjusting on desk in Experience might be needed or here
- rotation={baseRotation}
+ position={layout.local}
+ rotation={layout.rotation}
  onClick={onClick}
  onPointerOver={onPointerOver}
  onPointerOut={onPointerOut}
  >
  <primitive
  object={clone}
- scale={.4} // Heuristic scale, similar to Monitor/XR
+ scale={layout.scale}
  />
  </group>
  );
@@ -148,10 +148,10 @@ export const MobilePhone: React.FC<DeviceProps> = ({ color, roughness, isSelecte
 
 export const Watch: React.FC<DeviceProps> = ({ color, roughness, isSelected, isHovered, onClick, onPointerOver, onPointerOut }) => {
  const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/smartwatch.glb`, DRACO_PATH);
- const initialY = 0.07;
- const baseRotation: [number, number, number] = [0, 1 + Math.PI, .2];
- const tiltRotation: [number, number, number] = [-Math.PI / 2 - 0.5, Math.PI / 2 + Math.PI + 1, -1.5]; // Tilt forward
- const groupRef = useHoverAnimation(initialY, isHovered, isSelected, baseRotation, tiltRotation, 0.4);
+ const layout = DEVICES['watch-alarm'];
+ const groupRef = useHoverAnimation(
+  layout.local[1], isHovered, isSelected, layout.rotation, layout.tilt, layout.selectedY
+ );
 
  const clone = useMemo(() => {
  const c = scene.clone();
@@ -168,8 +168,8 @@ export const Watch: React.FC<DeviceProps> = ({ color, roughness, isSelected, isH
  return (
  <group
  ref={groupRef}
- position={[3.5, initialY, -2]}
- rotation={baseRotation}
+ position={layout.local}
+ rotation={layout.rotation}
  // Rotation handled by hook now
  onClick={onClick}
  onPointerOver={onPointerOver}
@@ -177,7 +177,7 @@ export const Watch: React.FC<DeviceProps> = ({ color, roughness, isSelected, isH
  >
  <primitive
  object={clone}
- scale={0.4}
+ scale={layout.scale}
  />
  </group>
  );
@@ -185,10 +185,10 @@ export const Watch: React.FC<DeviceProps> = ({ color, roughness, isSelected, isH
 
 export const Monitor: React.FC<DeviceProps> = ({ isSelected, roughness, isHovered, onClick, onPointerOver, onPointerOut }) => {
  const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/monitor.glb`, DRACO_PATH);
- const initialY = 0;
- const baseRotation: [number, number, number] = [0, 0, 0];
- const tiltRotation: [number, number, number] = [0, 0, 0];
- const groupRef = useHoverAnimation(initialY, isHovered, isSelected, baseRotation, tiltRotation, 0.2);
+ const layout = DEVICES['monitor'];
+ const groupRef = useHoverAnimation(
+  layout.local[1], isHovered, isSelected, layout.rotation, layout.tilt, layout.selectedY
+ );
 
  const clone = useMemo(() => {
  const c = scene.clone();
@@ -208,12 +208,12 @@ export const Monitor: React.FC<DeviceProps> = ({ isSelected, roughness, isHovere
  onClick={onClick}
  onPointerOver={onPointerOver}
  onPointerOut={onPointerOut}
- position={[0, initialY, .2]}
- rotation={baseRotation}
+ position={layout.local}
+ rotation={layout.rotation}
  >
  <primitive
  object={clone}
- scale={5.5} // Adjust scale as needed based on model units
+ scale={layout.scale}
  />
  </group>
  );
@@ -221,10 +221,10 @@ export const Monitor: React.FC<DeviceProps> = ({ isSelected, roughness, isHovere
 
 export const Headphone: React.FC<DeviceProps> = ({ isSelected, roughness, isHovered, onClick, onPointerOver, onPointerOut }) => {
  const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/headphone.glb`, DRACO_PATH);
- const initialY = .27;
- const baseRotation: [number, number, number] = [0, Math.PI / 2 + 2, Math.PI / 2 + .2];
- const tiltRotation: [number, number, number] = [Math.PI / 2, Math.PI + Math.PI / 2, Math.PI / 2];
- const groupRef = useHoverAnimation(initialY, isHovered, isSelected, baseRotation, tiltRotation, 1);
+ const layout = DEVICES['headphone'];
+ const groupRef = useHoverAnimation(
+  layout.local[1], isHovered, isSelected, layout.rotation, layout.tilt, layout.selectedY
+ );
 
  const clone = useMemo(() => {
  const c = scene.clone();
@@ -244,12 +244,12 @@ export const Headphone: React.FC<DeviceProps> = ({ isSelected, roughness, isHove
  onClick={onClick}
  onPointerOver={onPointerOver}
  onPointerOut={onPointerOut}
- position={[0, initialY, -.4]} // Initial position, will valid in Experience
- rotation={baseRotation}
+ position={layout.local}
+ rotation={layout.rotation}
  >
  <primitive
  object={clone}
- scale={1.4} // Heuristic scale
+ scale={layout.scale}
  />
  </group>
  );
@@ -257,10 +257,10 @@ export const Headphone: React.FC<DeviceProps> = ({ isSelected, roughness, isHove
 
 export const Publication: React.FC<DeviceProps> = ({ isSelected, roughness, isHovered, onClick, onPointerOver, onPointerOut }) => {
  const { scene } = useGLTF(`${import.meta.env.BASE_URL}models/news.glb`, DRACO_PATH);
- const initialY = 0;
- const baseRotation: [number, number, number] = [0, -0.3, 0];
- const tiltRotation: [number, number, number] = [.5, -0.3, 0];
- const groupRef = useHoverAnimation(initialY, isHovered, isSelected, baseRotation, tiltRotation, .7);
+ const layout = DEVICES['publication'];
+ const groupRef = useHoverAnimation(
+  layout.local[1], isHovered, isSelected, layout.rotation, layout.tilt, layout.selectedY
+ );
 
  const clone = useMemo(() => {
  const c = scene.clone();
@@ -279,12 +279,12 @@ export const Publication: React.FC<DeviceProps> = ({ isSelected, roughness, isHo
  onClick={onClick}
  onPointerOver={onPointerOver}
  onPointerOut={onPointerOut}
- position={[2, initialY, 0.2]}
- rotation={baseRotation}
+ position={layout.local}
+ rotation={layout.rotation}
  >
  <primitive
  object={clone}
- scale={10}
+ scale={layout.scale}
  />
  </group>
  );
