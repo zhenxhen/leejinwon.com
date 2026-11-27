@@ -76,11 +76,17 @@
   <link rel="preconnect" href="https://p.typekit.net" crossorigin>
 
   <!-- 3D 에셋 선행 로드.
-       기기 형상은 코드로 만들어서 받을 파일이 없다. 내용이 담긴 이미지만 남는다.
        이 요청들은 Experience 청크 안에서 시작되므로, 여기 적어두면 문서를 읽는
-       즉시 JS와 나란히 받는다. -->
-  <link rel="preload" as="image" href="/3DUI/screen.webp">
-  <link rel="preload" as="image" href="/3DUI/cover.webp">
+       즉시 JS와 나란히 받는다. 2차 요청은 transferSize 0인 캐시 히트라
+       중복 다운로드는 없다. -->
+  <link rel="preload" as="fetch" href="/models/XR.glb">
+  <link rel="preload" as="fetch" href="/models/headphone.glb">
+  <link rel="preload" as="fetch" href="/models/smartwatch.glb">
+  <link rel="preload" as="fetch" href="/models/news.glb">
+  <link rel="preload" as="fetch" href="/models/monitor.glb">
+  <link rel="preload" as="fetch" href="/models/phone.glb">
+  <link rel="preload" as="fetch" href="/draco/draco_wasm_wrapper.js">
+  <link rel="preload" as="fetch" href="/draco/draco_decoder.wasm">
   <link rel="preload" as="image" href="/3DUI/calendar.webp">
   <link rel="preload" as="image" href="/3DUI/clock.webp">
   <link rel="preload" as="image" href="/3DUI/reminder.webp">
