@@ -108,39 +108,44 @@ export const XRHeadset: React.FC<DeviceProps> = ({ roughness, isSelected, isHove
   position={[-3.5, initialY, 0.3]}
   rotation={baseRotation}
  >
-  {/* 흰 알루미늄 프레임 */}
-  <RoundedBox args={[1.16, 0.6, 0.4]} radius={0.27} smoothness={8} position={[0, 0.33, -0.02]}>
+  {/* 흰 알루미늄 프레임 — 원본 bbox 2.12W x 0.75H x 1.42D에 맞춘 납작·광폭 비율 */}
+  <RoundedBox args={[1.52, 0.52, 0.72]} radius={0.25} smoothness={8} position={[0, 0.3, 0.02]}>
   <Plastic roughness={roughness ?? 0.4} />
   </RoundedBox>
 
   {/* 바이저 — 납작하게 누른 구라 반사가 곡면을 따라 흐른다 */}
-  <mesh position={[0, 0.33, 0.14]} scale={[0.56, 0.27, 0.2]}>
+  <mesh position={[0, 0.3, 0.3]} scale={[0.68, 0.23, 0.3]}>
   <sphereGeometry args={[1, 40, 28]} />
   <Glassy color={VISOR} />
   </mesh>
 
   {/* 페이스 쿠션 */}
-  <RoundedBox args={[0.94, 0.48, 0.16]} radius={0.18} smoothness={6} position={[0, 0.32, -0.21]}>
+  <RoundedBox args={[1.2, 0.44, 0.22]} radius={0.18} smoothness={6} position={[0, 0.29, -0.3]}>
   <Fabric color={FABRIC_2} />
   </RoundedBox>
 
-  {/* 측면 힌지 */}
-  {[-0.56, 0.56].map((x, i) => (
-  <mesh key={i} position={[x, 0.33, -0.05]} rotation={[0, 0, Math.PI / 2]}>
-   <cylinderGeometry args={[0.07, 0.07, 0.09, 20]} />
+  {/* 측면 암 — 좌우로 뻗어 전체 폭 2.12를 만든다 */}
+  {[-1, 1].map((sdir, i) => (
+  <RoundedBox key={i} args={[0.42, 0.17, 0.12]} radius={0.06} smoothness={6} position={[sdir * 0.85, 0.3, -0.06]}>
+   <Plastic roughness={roughness ?? 0.4} />
+  </RoundedBox>
+  ))}
+  {[-1, 1].map((sdir, i) => (
+  <mesh key={i} position={[sdir * 0.68, 0.3, -0.02]} rotation={[0, 0, Math.PI / 2]}>
+   <cylinderGeometry args={[0.085, 0.085, 0.1, 20]} />
    <Metal />
   </mesh>
   ))}
 
-  {/* 니트 밴드 — 머리 뒤를 감싸는 수평 루프 */}
-  <mesh position={[0, 0.33, -0.3]} rotation={[Math.PI / 2, 0, 0]}>
-  <torusGeometry args={[0.3, 0.055, 12, 28, Math.PI * 1.25]} />
+  {/* 니트 밴드 — 뒤로 1.42 깊이를 채운다 */}
+  <mesh position={[0, 0.3, -0.52]} rotation={[Math.PI / 2, 0, 0]} scale={[1, 1.15, 1]}>
+  <torusGeometry args={[0.42, 0.06, 12, 32, Math.PI * 1.3]} />
   <Fabric />
   </mesh>
 
   {/* 상단 스트랩 */}
-  <mesh position={[0, 0.36, -0.16]} scale={[1, 0.75, 1]}>
-  <torusGeometry args={[0.3, 0.032, 10, 28, Math.PI]} />
+  <mesh position={[0, 0.33, -0.2]} scale={[1, 0.7, 1]}>
+  <torusGeometry args={[0.42, 0.035, 10, 32, Math.PI]} />
   <Fabric color={FABRIC_2} />
   </mesh>
  </group>
@@ -164,27 +169,27 @@ export const MobilePhone: React.FC<DeviceProps> = ({ isSelected, isHovered, onCl
   onPointerOut={onPointerOut}
  >
   {/* 티타늄 프레임 — 살짝 크게 깔아 테두리로 보이게 */}
-  <RoundedBox args={[0.455, 0.935, 0.03]} radius={0.042} smoothness={8}>
+  <RoundedBox args={[0.69, 1.43, 0.085]} radius={0.065} smoothness={8}>
   <Metal color={TITAN} />
   </RoundedBox>
   {/* 후면 유리 */}
-  <RoundedBox args={[0.44, 0.92, 0.032]} radius={0.038} smoothness={8} position={[0, 0, -0.002]}>
+  <RoundedBox args={[0.665, 1.405, 0.088]} radius={0.06} smoothness={8} position={[0, 0, -0.004]}>
   <meshStandardMaterial color="#4a515a" roughness={0.35} metalness={0.5} />
   </RoundedBox>
   {/* 전면 디스플레이 */}
-  <RoundedBox args={[0.425, 0.905, 0.034]} radius={0.036} smoothness={8} position={[0, 0, 0.003]}>
+  <RoundedBox args={[0.645, 1.385, 0.092]} radius={0.056} smoothness={8} position={[0, 0, 0.006]}>
   <Glassy />
   </RoundedBox>
 
   {/* 후면 카메라 3구 — 링 + 렌즈 */}
-  {[0.3, 0.175, 0.05].map((y, i) => (
-  <group key={i} position={[-0.135, y, -0.022]}>
+  {[0.46, 0.27, 0.08].map((y, i) => (
+  <group key={i} position={[-0.205, y, -0.055]}>
    <mesh rotation={[Math.PI / 2, 0, 0]}>
-   <cylinderGeometry args={[0.046, 0.046, 0.016, 24]} />
+   <cylinderGeometry args={[0.07, 0.07, 0.022, 24]} />
    <Metal color="#6a717a" />
    </mesh>
-   <mesh position={[0, 0, -0.006]} rotation={[Math.PI / 2, 0, 0]}>
-   <cylinderGeometry args={[0.032, 0.032, 0.018, 24]} />
+   <mesh position={[0, 0, -0.009]} rotation={[Math.PI / 2, 0, 0]}>
+   <cylinderGeometry args={[0.049, 0.049, 0.026, 24]} />
    <Glassy color="#0d0f12" />
    </mesh>
   </group>
@@ -210,34 +215,34 @@ export const Watch: React.FC<DeviceProps> = ({ isSelected, isHovered, onClick, o
   onPointerOut={onPointerOut}
  >
   {/* 스트랩 — 멀어질수록 가늘어지게 두 토막으로 */}
-  <RoundedBox args={[0.2, 0.34, 0.028]} radius={0.014} smoothness={4} position={[0, 0.33, 0.01]}>
+  <RoundedBox args={[0.21, 0.17, 0.032]} radius={0.015} smoothness={4} position={[0, 0.25, 0.012]}>
   <Fabric color={FABRIC_2} />
   </RoundedBox>
-  <RoundedBox args={[0.17, 0.34, 0.025]} radius={0.012} smoothness={4} position={[0, 0.62, 0.005]}>
+  <RoundedBox args={[0.18, 0.14, 0.028]} radius={0.013} smoothness={4} position={[0, 0.39, 0.03]}>
   <Fabric color={FABRIC_2} />
   </RoundedBox>
-  <RoundedBox args={[0.2, 0.34, 0.028]} radius={0.014} smoothness={4} position={[0, -0.33, 0.01]}>
+  <RoundedBox args={[0.21, 0.17, 0.032]} radius={0.015} smoothness={4} position={[0, -0.25, 0.012]}>
   <Fabric color={FABRIC_2} />
   </RoundedBox>
-  <RoundedBox args={[0.17, 0.34, 0.025]} radius={0.012} smoothness={4} position={[0, -0.62, 0.005]}>
+  <RoundedBox args={[0.18, 0.14, 0.028]} radius={0.013} smoothness={4} position={[0, -0.39, 0.03]}>
   <Fabric color={FABRIC_2} />
   </RoundedBox>
 
   {/* 케이스 — 스퀘어클 */}
-  <RoundedBox args={[0.32, 0.38, 0.12]} radius={0.088} smoothness={8} position={[0, 0, 0.065]}>
+  <RoundedBox args={[0.34, 0.4, 0.15]} radius={0.095} smoothness={8} position={[0, 0, 0.08]}>
   <Metal />
   </RoundedBox>
   {/* 글래스 — 살짝 볼록 */}
-  <mesh position={[0, 0, 0.122]} scale={[0.137, 0.167, 0.022]}>
+  <mesh position={[0, 0, 0.152]} scale={[0.148, 0.178, 0.028]}>
   <sphereGeometry args={[1, 32, 24]} />
   <Glassy />
   </mesh>
   {/* 용두 + 사이드 버튼 */}
-  <mesh position={[0.168, 0.05, 0.075]} rotation={[0, 0, Math.PI / 2]}>
+  <mesh position={[0.178, 0.05, 0.09]} rotation={[0, 0, Math.PI / 2]}>
   <cylinderGeometry args={[0.026, 0.026, 0.035, 16]} />
   <Metal />
   </mesh>
-  <RoundedBox args={[0.02, 0.1, 0.035]} radius={0.008} smoothness={3} position={[0.165, -0.09, 0.075]}>
+  <RoundedBox args={[0.02, 0.1, 0.035]} radius={0.008} smoothness={3} position={[0.175, -0.09, 0.09]}>
   <Metal />
   </RoundedBox>
  </group>
@@ -264,26 +269,26 @@ export const Monitor: React.FC<DeviceProps> = ({ isSelected, roughness, isHovere
   rotation={baseRotation}
  >
   {/* 타원형 받침 */}
-  <mesh position={[0, 0.016, 0.08]} scale={[1, 1, 0.62]}>
-  <cylinderGeometry args={[0.52, 0.54, 0.032, 48]} />
+  <mesh position={[0, 0.02, 0.1]} scale={[1, 1, 0.66]}>
+  <cylinderGeometry args={[0.64, 0.66, 0.04, 48]} />
   <Plastic color={SHELL_2} roughness={roughness ?? 0.45} />
   </mesh>
   {/* 목 */}
-  <RoundedBox args={[0.42, 0.66, 0.05]} radius={0.022} smoothness={6} position={[0, 0.35, 0.02]}>
+  <RoundedBox args={[0.5, 0.72, 0.06]} radius={0.026} smoothness={6} position={[0, 0.4, 0.03]}>
   <Plastic color={SHELL_2} roughness={roughness ?? 0.45} />
   </RoundedBox>
 
   {/* 본체 */}
-  <RoundedBox args={[2.78, 1.72, 0.05]} radius={0.06} smoothness={8} position={[0, 1.52, 0]}>
+  <RoundedBox args={[3.43, 1.98, 0.062]} radius={0.07} smoothness={8} position={[0, 1.72, 0]}>
   <Plastic roughness={roughness ?? 0.4} />
   </RoundedBox>
   {/* 어두운 베젤 — 화면이 흰 본체에 그냥 박힌 느낌을 없앤다 */}
-  <RoundedBox args={[2.62, 1.52, 0.052]} radius={0.028} smoothness={6} position={[0, 1.59, 0.012]}>
+  <RoundedBox args={[3.33, 1.9, 0.064]} radius={0.032} smoothness={6} position={[0, 1.78, 0.014]}>
   <meshStandardMaterial color="#20232a" roughness={0.45} metalness={0.1} />
   </RoundedBox>
   {/* 화면 */}
-  <mesh position={[0, 1.59, 0.04]}>
-  <planeGeometry args={[2.54, 1.44]} />
+  <mesh position={[0, 1.78, 0.048]}>
+  <planeGeometry args={[3.28, 1.85]} />
   <meshBasicMaterial map={screen} toneMapped={false} />
   </mesh>
  </group>
@@ -307,33 +312,33 @@ export const Headphone: React.FC<DeviceProps> = ({ isSelected, roughness, isHove
   rotation={baseRotation}
  >
   {/* 헤드밴드 금속 프레임 (torus 기본 평면이 XY라 그대로 두면 머리 위로 호를 그린다) */}
-  <mesh position={[0, 0.56, 0]}>
-  <torusGeometry args={[0.43, 0.026, 12, 40, Math.PI]} />
+  <mesh position={[0, 0.78, 0]}>
+  <torusGeometry args={[0.52, 0.032, 12, 40, Math.PI]} />
   <Metal />
   </mesh>
   {/* 메시 캐노피 — 프레임 안쪽을 채우는 천. z로 눌러 납작한 띠로 */}
-  <mesh position={[0, 0.56, 0]} scale={[1, 1, 0.42]}>
-  <torusGeometry args={[0.4, 0.075, 14, 40, Math.PI]} />
+  <mesh position={[0, 0.78, 0]} scale={[1, 1, 0.38]}>
+  <torusGeometry args={[0.49, 0.09, 14, 40, Math.PI]} />
   <Fabric />
   </mesh>
 
   {/* 이어컵을 잇는 금속 암 */}
   {[-1, 1].map((s, i) => (
-  <mesh key={i} position={[s * 0.42, 0.52, 0]} rotation={[0, 0, s * 0.12]}>
-   <cylinderGeometry args={[0.019, 0.019, 0.22, 14]} />
+  <mesh key={i} position={[s * 0.2, 0.75, 0]} rotation={[0, 0, s * 0.1]}>
+   <cylinderGeometry args={[0.022, 0.022, 0.26, 14]} />
    <Metal />
   </mesh>
   ))}
 
   {/* 이어컵 */}
-  {[-0.41, 0.41].map((x, i) => (
-  <group key={i} position={[x, 0.3, 0]}>
-   <RoundedBox args={[0.21, 0.58, 0.5]} radius={0.17} smoothness={8}>
+  {[-0.19, 0.19].map((x, i) => (
+  <group key={i} position={[x, 0.42, 0]}>
+   <RoundedBox args={[0.2, 0.78, 0.8]} radius={0.28} smoothness={8}>
    <Plastic roughness={roughness ?? 0.38} />
    </RoundedBox>
    {/* 메모리폼 쿠션 */}
-   <mesh position={[x < 0 ? 0.105 : -0.105, 0, 0]} rotation={[0, 0, Math.PI / 2]} scale={[1, 1, 1.12]}>
-   <cylinderGeometry args={[0.205, 0.205, 0.075, 28]} />
+   <mesh position={[x < 0 ? 0.1 : -0.1, 0, 0]} rotation={[0, 0, Math.PI / 2]} scale={[1, 1, 1.05]}>
+   <cylinderGeometry args={[0.31, 0.31, 0.08, 28]} />
    <Fabric color={FABRIC_2} />
    </mesh>
   </group>
@@ -362,18 +367,18 @@ export const Publication: React.FC<DeviceProps> = ({ isSelected, isHovered, onCl
   rotation={baseRotation}
  >
   {/* 아래 깔린 책들 — 살짝씩 어긋나게 쌓아 한 덩어리로 안 보이게 */}
-  <RoundedBox args={[1.02, 0.022, 1.32]} radius={0.006} smoothness={2} position={[0.015, 0.011, -0.012]}>
+  <RoundedBox args={[1.33, 0.062, 1.92]} radius={0.008} smoothness={2} position={[0.02, 0.031, -0.018]}>
   <Plastic color={SHELL_2} roughness={0.8} />
   </RoundedBox>
-  <RoundedBox args={[1.0, 0.02, 1.3]} radius={0.006} smoothness={2} position={[-0.01, 0.032, 0.008]}>
+  <RoundedBox args={[1.31, 0.058, 1.9]} radius={0.008} smoothness={2} position={[-0.015, 0.091, 0.012]}>
   <Plastic roughness={0.8} />
   </RoundedBox>
   {/* 맨 위 표지 */}
-  <RoundedBox args={[0.99, 0.016, 1.29]} radius={0.005} smoothness={2} position={[0, 0.05, 0]}>
+  <RoundedBox args={[1.3, 0.05, 1.89]} radius={0.007} smoothness={2} position={[0, 0.145, 0]}>
   <Plastic color="#ffffff" roughness={0.75} />
   </RoundedBox>
-  <mesh position={[0, 0.059, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-  <planeGeometry args={[0.95, 1.25]} />
+  <mesh position={[0, 0.171, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+  <planeGeometry args={[1.26, 1.84]} />
   <meshBasicMaterial map={cover} toneMapped={false} />
   </mesh>
  </group>
