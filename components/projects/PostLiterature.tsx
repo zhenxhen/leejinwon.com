@@ -186,17 +186,48 @@ export const PostLiterature: React.FC = () => {
      </div>
     </div>
 
-    <figure className="mt-16 flex flex-col items-center">
-     <img
-      src="/post-literature/diagram.webp"
-      alt="System diagram — swipe, capture over ADB, read by the model, print out, repeat"
-      className="w-full max-w-md h-auto"
-     />
-     <figcaption className="text-gray-400 text-sm mt-4 max-w-md">
-      The loop in full: the arm swipes, ADB captures the screen, the model reads it, the
-      printer prints, and it begins again. Nothing in it waits for a person.
-     </figcaption>
-    </figure>
+   </section>
+
+   {/* 3. 루프 — 다이어그램과 설명을 좌우로 */}
+   <section className="border-t border-gray-100 pt-16 -mx-8 px-8 mb-32">
+    <div className="grid grid-cols-1 dt:grid-cols-2 gap-10 lg:gap-24 items-top mb-4">
+     <div className="w-full">
+      <img
+       src="/post-literature/diagram.webp"
+       alt="System diagram — swipe, capture over ADB, read by the model, print out, repeat"
+       className="w-full max-w-sm h-auto mx-auto dt:mx-0"
+      />
+     </div>
+     <div>
+      <h2 className="text-3xl md:text-4xl font-normal leading-tight text-black mb-8">
+       The Loop
+      </h2>
+      <div className="project-description mb-10">
+       <p>
+        A Raspberry Pi 5 holds the three devices on three USB ports and keeps one cycle
+        running. Nothing in it waits for a person — the work only stops when the paper
+        runs out.
+       </p>
+      </div>
+      <ol className="border-t border-gray-100">
+       {[
+        ['Swipe', 'A Python script drives the arm over USB #1. The arm touches the screen the way a thumb does'],
+        ['Capture', 'The phone is read over ADB on USB #2 — whatever the feed is showing at that moment'],
+        ['Read', 'A language model turns that screen into a sentence: not a caption, a reading'],
+        ['Print out', 'A second script sends it to the thermal printer on USB #3, and the strip grows'],
+        ['Again', 'The arm swipes once more. The loop has no end condition'],
+       ].map(([step, text], i) => (
+        <li key={step} className="border-b border-gray-100 py-5 flex gap-5">
+         <span className="text-gray-300 tabular-nums shrink-0 w-7">{String(i + 1).padStart(2, '0')}</span>
+         <span>
+          <span className="block text-black mb-1">{step}</span>
+          <span className="text-gray-500">{text}</span>
+         </span>
+        </li>
+       ))}
+      </ol>
+     </div>
+    </div>
    </section>
 
    {/* Gallery */}

@@ -220,36 +220,36 @@ export const Ectomnesia: React.FC = () => {
     </p>
    </section>
 
-   <section className="layout-vertical-media">
-    <div className="layout-vertical-media-left">
-     <Demo />
+   {/* 데모는 16:9 가로라 좌우로 나누면 옆이 비어 어색하다. 위아래로 쌓는다. */}
+   <section className="mb-20 -mx-8 px-8 md:mx-0 md:px-0">
+    <Demo />
+   </section>
+
+   <section className="grid grid-cols-1 dt:grid-cols-2 gap-10 lg:gap-24 items-top mb-32">
+    <div>
+     <h2 className="mb-8 text-lg">Overview</h2>
+     <ul className="space-y-4 text-gray-600">
+      <li><span className="block text-gray-400 tracking-wider mb-1 ">Type</span>MS Thesis · Research through Design</li>
+      <li><span className="block text-gray-400 tracking-wider mb-1 ">Year</span>2026</li>
+      <li><span className="block text-gray-400 tracking-wider mb-1 ">Method</span>Survey (43) · Pilot (2 personas) · 3 prototypes · 2 user tests (5, 7)</li>
+      <li><span className="block text-gray-400 tracking-wider mb-1 ">Built with</span>ChatGPT plugin panel, TypeScript, three.js, Blender</li>
+     </ul>
     </div>
-    <div className="layout-vertical-media-right">
-     <div className="mb-12">
-      <h2 className="mb-8 text-lg">Overview</h2>
-      <ul className="space-y-4 text-gray-600">
-       <li><span className="block text-gray-400 tracking-wider mb-1 ">Type</span>MS Thesis · Research through Design</li>
-       <li><span className="block text-gray-400 tracking-wider mb-1 ">Year</span>2026</li>
-       <li><span className="block text-gray-400 tracking-wider mb-1 ">Method</span>Survey (43) · Pilot (2 personas) · 3 prototypes · 2 user tests (5, 7)</li>
-       <li><span className="block text-gray-400 tracking-wider mb-1 ">Built with</span>ChatGPT plugin panel, TypeScript, three.js, Blender</li>
-      </ul>
-     </div>
-     <div>
-      <h2 className="mb-8 text-lg">Mission</h2>
-      <div className="project-description space-y-6">
-       <p>
-        &ldquo;Why does my AI seem to know me, and what does it think I am?&rdquo;
-       </p>
-       <p>
-        Everyone talks to the same model. What differs is the <em>memory</em> the service
-        keeps about each person: remarks it selected, summarised and interpreted, and
-        traits it inferred. Replies are shaped by that memory, yet it can only be checked
-        as a list on a settings screen, away from the chat.
-       </p>
-       <p>
-        Ectomnesia lets people meet, beside the chat, the &ldquo;me&rdquo; their AI remembers.
-       </p>
-      </div>
+    <div>
+     <h2 className="mb-8 text-lg">Mission</h2>
+     <div className="project-description space-y-6">
+      <p>
+       &ldquo;Why does my AI seem to know me, and what does it think I am?&rdquo;
+      </p>
+      <p>
+       Everyone talks to the same model. What differs is the <em>memory</em> the service
+       keeps about each person: remarks it selected, summarised and interpreted, and
+       traits it inferred. Replies are shaped by that memory, yet it can only be checked
+       as a list on a settings screen, away from the chat.
+      </p>
+      <p>
+       Ectomnesia lets people meet, beside the chat, the &ldquo;me&rdquo; their AI remembers.
+      </p>
      </div>
     </div>
    </section>
