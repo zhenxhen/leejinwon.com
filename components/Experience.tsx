@@ -274,7 +274,8 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
           const scaleFactor = Math.min(1, Math.max(0.4, effectiveWidth / 1200));
           const responsiveZoom = zoom * scaleFactor;
 
-          controlsRef.current.setTarget(...target, true);
+          // 선택 중에는 타깃을 올려 씬을 아래로 내린다 (상단 텍스트 가독성)
+          controlsRef.current.setTarget(target[0], target[1] + CAMERA.activeTargetLift, target[2], true);
           controlsRef.current.zoomTo(responsiveZoom, true);
         } else {
           // Reset to default view
