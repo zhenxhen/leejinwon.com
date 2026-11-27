@@ -23,6 +23,8 @@ export interface WorkItem {
   id: string;
   title: string;
   category: string;
+  /** 카테고리 아래 한 줄 더 — 매체나 형식 (선택) */
+  medium?: string;
   image: string;
   year: string;
 }
