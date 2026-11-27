@@ -63,7 +63,7 @@ export const PostLiterature: React.FC = () => {
      Post Literature
     </h1>
     <p className="subtitle text-gray-600 max-w-2xl">
-     New Media Installation, 2026
+     AI New Media Installation, 2026
     </p>
    </header>
 
@@ -153,8 +153,9 @@ export const PostLiterature: React.FC = () => {
       <div className="project-description space-y-6">
        <p>
         A robot arm scrolls a phone the way a hand does — steadily, without deciding when
-        to stop. What passes on the screen is read by a language model through the Gemini
-        API, and a thermal printer turns that reading into a continuous strip of paper.
+        to stop. The screen is captured over ADB, read by a language model, and a thermal
+        printer turns that reading into a continuous strip of paper. A Raspberry Pi 5 holds
+        the three devices together on three USB ports and keeps the loop running.
        </p>
        <p>
         Nothing in the loop is exotic: an arm, a single-board computer, a receipt printer.
@@ -184,6 +185,18 @@ export const PostLiterature: React.FC = () => {
       </ul>
      </div>
     </div>
+
+    <figure className="mt-16 flex flex-col items-center">
+     <img
+      src="/post-literature/diagram.webp"
+      alt="System diagram — swipe, capture over ADB, read by the model, print out, repeat"
+      className="w-full max-w-md h-auto"
+     />
+     <figcaption className="text-gray-400 text-sm mt-4 max-w-md">
+      The loop in full: the arm swipes, ADB captures the screen, the model reads it, the
+      printer prints, and it begins again. Nothing in it waits for a person.
+     </figcaption>
+    </figure>
    </section>
 
    {/* Gallery */}

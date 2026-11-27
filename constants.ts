@@ -83,7 +83,7 @@ export const WORK_ITEMS: WorkItem[] = [
   {
     id: 'post-literature',
     title: 'Post Literature',
-    category: 'New Media Installation',
+    category: 'AI New Media Installation',
     image: '/thumbnail/9.webp',
     year: '2026'
   },
