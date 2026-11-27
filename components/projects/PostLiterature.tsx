@@ -36,7 +36,7 @@ const Film: React.FC = () => {
    ) : (
     <img
      src="/post-literature/poster.webp"
-     alt="Post Literature — a robot arm scrolling a phone beside a thermal printer"
+     alt="Post Literature installed — the arm, the printer, and the paper it has already made"
      className="w-full h-auto"
     />
    )}
@@ -135,8 +135,8 @@ export const PostLiterature: React.FC = () => {
      </div>
      <div className="w-full h-full">
       <img
-       src="/post-literature/poster.webp"
-       alt="The installation: a robot arm holding a phone over a bed of printed receipts"
+       src="/post-literature/s2.webp"
+       alt="The phone on the plinth, a feed playing under the arm"
        className="w-full h-full object-cover"
       />
      </div>
@@ -164,6 +164,11 @@ export const PostLiterature: React.FC = () => {
       </div>
      </div>
      <div className="w-full h-full">
+      <img
+       src="/post-literature/s4.webp"
+       alt="Close up — the arm over the phone, a printed strip running out beneath it"
+       className="w-full h-auto mb-8"
+      />
       <ul className="border-t border-gray-100">
        {[
         ['Robot Arm', 'Performs the scroll — the gesture under examination'],
@@ -179,6 +184,24 @@ export const PostLiterature: React.FC = () => {
       </ul>
      </div>
     </div>
+   </section>
+
+   {/* Gallery */}
+   <section className="mb-32 -mx-8 px-8 md:mx-0 md:px-0">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+     {[
+      ['s1', 'A visitor reading the strip the machine has just printed'],
+      ['s3', 'The work photographed by a visitor'],
+      ['s6', 'The paper gathering on the gallery floor'],
+     ].map(([f, alt]) => (
+      <div key={f} className="w-full overflow-hidden">
+       <img src={`/post-literature/${f}.webp`} alt={alt} className="w-full h-full object-cover" />
+      </div>
+     ))}
+    </div>
+    <p className="text-gray-400 text-sm mt-4">
+     InterPlay, UAL Creative Computing Institute, 2026.
+    </p>
    </section>
 
    {/* Links */}
