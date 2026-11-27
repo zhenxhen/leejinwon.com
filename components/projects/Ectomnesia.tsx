@@ -195,7 +195,7 @@ export const Ectomnesia: React.FC = () => {
      ← Back to Projects
     </Link>
     <h1 className="title mb-2">Ectomnesia</h1>
-    <p className="subtitle text-gray-600 max-w-2xl">MA Thesis, 2026</p>
+    <p className="subtitle text-gray-600 max-w-2xl">MS Thesis, 2026</p>
    </header>
 
    {/* Hero + Overview */}
@@ -207,7 +207,7 @@ export const Ectomnesia: React.FC = () => {
      <div className="mb-12">
       <h2 className="mb-8 text-lg">Overview</h2>
       <ul className="space-y-4 text-gray-600">
-       <li><span className="block text-gray-400 tracking-wider mb-1 ">Type</span>MA Thesis · Research through Design</li>
+       <li><span className="block text-gray-400 tracking-wider mb-1 ">Type</span>MS Thesis · Research through Design</li>
        <li><span className="block text-gray-400 tracking-wider mb-1 ">Year</span>2026</li>
        <li><span className="block text-gray-400 tracking-wider mb-1 ">Method</span>Survey (43) · Pilot (2 personas) · 3 prototypes · 2 user tests (5, 7)</li>
        <li><span className="block text-gray-400 tracking-wider mb-1 ">Built with</span>ChatGPT plugin panel, TypeScript, three.js, Blender</li>

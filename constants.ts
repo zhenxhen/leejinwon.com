@@ -76,7 +76,7 @@ export const WORK_ITEMS: WorkItem[] = [
   {
     id: 'ectomnesia',
     title: 'Ectomnesia',
-    category: 'MA Thesis · Research through Design',
+    category: 'MS Thesis · Research through Design',
     image: '/thumbnail/10.webp',
     year: '2026'
   },
