@@ -14,6 +14,12 @@ import { Footer } from '../Footer';
 const LOGO_SRC = '/interplay/logo.webp';
 const OFFICIAL_SEED = 72228804;
 const INTENSITIES = [8, 12, 16, 18];
+/**
+ * 박스 이동 속도 계수. 원본(script.js)은 pixelSize * 0.2인데, 원본 캔버스는
+ * 1685px이고 여기는 900px로 줄여 쓰기 때문에 같은 값이면 마크 대비 더 빨리 흐른다.
+ * 읽으면서 볼 수 있을 만큼 늦춘다.
+ */
+const SPEED = 0.06;
 
 type Box = { floatX: number; x: number; y: number; w: number; h: number; pixelSize: number; speed: number; direction: number };
 
@@ -82,7 +88,7 @@ const LogoGenerator: React.FC = () => {
     w: Math.max(pSize, Math.round(wRaw / pSize) * pSize),
     h: Math.max(pSize, Math.round(hRaw / pSize) * pSize),
     pixelSize: pSize,
-    speed: pSize * 0.2,
+    speed: pSize * SPEED,
     direction: i % 2 === 1 ? 1 : -1,
    };
   });
