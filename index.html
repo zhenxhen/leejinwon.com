@@ -70,6 +70,10 @@
   </script>
 
   <!-- ── Fonts & Styles ──────────────────────────────────────────── -->
+  <!-- typekit 스타일시트는 렌더 블로킹이라 이게 오기 전엔 아무것도 안 그려진다.
+       연결(DNS+TLS)을 미리 열어두면 그 대기 시간이 줄어든다. -->
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="preconnect" href="https://p.typekit.net" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/oie1kpt.css">
   <style>
     body {
