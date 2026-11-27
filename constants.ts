@@ -74,6 +74,20 @@ export const NAVIGATION_ORDER = [
 
 export const WORK_ITEMS: WorkItem[] = [
   {
+    id: 'post-literature',
+    title: 'Post Literature',
+    category: 'New Media Installation',
+    image: '/thumbnail/9.webp',
+    year: '2026'
+  },
+  {
+    id: 'interplay',
+    title: 'InterPlay',
+    category: 'Exhibition Identity & Website',
+    image: '/thumbnail/8.webp',
+    year: '2026'
+  },
+  {
     id: 'review',
     title: 'REVIEW',
     category: 'AI Computing Project',
