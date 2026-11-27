@@ -83,49 +83,49 @@ export const WORK_ITEMS: WorkItem[] = [
     id: 'review',
     title: 'REVIEW',
     category: 'AI Computing Project',
-    image: '/thumbnail/5.png',
+    image: '/thumbnail/5.webp',
     year: '2025'
   },
   {
     id: 'digital-garden',
     title: 'Digital Garden',
     category: 'Sound Engineering Project',
-    image: '/thumbnail/7.png',
+    image: '/thumbnail/7.webp',
     year: '2026'
   },
   {
     id: 'samsung-reminder',
     title: 'Samsung Reminder',
     category: 'Galaxy One UI',
-    image: '/thumbnail/1.png',
+    image: '/thumbnail/1.webp',
     year: '2025'
   },
   {
     id: 'samsung-calendar',
     title: 'Samsung Calendar',
     category: 'Galaxy One UI',
-    image: '/thumbnail/2.png',
+    image: '/thumbnail/2.webp',
     year: '2025'
   },
   {
     id: 'galaxy-one-ui-widget',
     title: 'Galaxy One UI Widget',
     category: 'Galaxy One UI',
-    image: '/thumbnail/3.png',
+    image: '/thumbnail/3.webp',
     year: '2024'
   },
   {
     id: 'samsung-clock',
     title: 'Samsung Clock',
     category: 'Galaxy One UI',
-    image: '/thumbnail/4.png',
+    image: '/thumbnail/4.webp',
     year: '2024'
   },
   {
     id: 'bloomy',
     title: 'Bloomy',
     category: 'Universal Wearable Product',
-    image: '/thumbnail/6.png',
+    image: '/thumbnail/6.webp',
     year: '2023'
   }
 ];

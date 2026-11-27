@@ -3,9 +3,15 @@ import { useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 
 const FloatingIcons: React.FC = () => {
- const calendarTex = useLoader(THREE.TextureLoader, `${import.meta.env.BASE_URL}3DUI/calendar.png`);
- const clockTex = useLoader(THREE.TextureLoader, `${import.meta.env.BASE_URL}3DUI/clock.png`);
- const reminderTex = useLoader(THREE.TextureLoader, `${import.meta.env.BASE_URL}3DUI/reminder.png`);
+ // useLoader를 세 번 따로 부르면 각 호출이 Suspense를 걸기 때문에
+ // 앞 텍스처가 끝나야 다음 요청이 나가는 폭포(waterfall)가 된다.
+ // 실측상 calendar -> clock -> reminder가 순차로 ~400ms를 잡아먹었다.
+ // 배열로 한 번에 넘기면 세 개가 병렬로 내려온다.
+ const [calendarTex, clockTex, reminderTex] = useLoader(THREE.TextureLoader, [
+  `${import.meta.env.BASE_URL}3DUI/calendar.png`,
+  `${import.meta.env.BASE_URL}3DUI/clock.png`,
+  `${import.meta.env.BASE_URL}3DUI/reminder.png`,
+ ]);
 
  // Ensure SRGB encoding for correct color output
  calendarTex.colorSpace = THREE.SRGBColorSpace;

@@ -369,7 +369,7 @@ export const Bloomy: React.FC = () => {
             {/* Main Image */}
             <section className="mb-12">
                 <div className="w-full max-w-7xl mx-auto aspect-video bg-gray-100 mb-16 overflow-hidden">
-                    <img src="/thumbnail/6.png" alt="Bloomy Wearable Experience" className="w-full h-full object-cover" />
+                    <img src="/thumbnail/6.webp" alt="Bloomy Wearable Experience" className="w-full h-full object-cover" />
                 </div>
 
                 {/* Overview & Mission */}
