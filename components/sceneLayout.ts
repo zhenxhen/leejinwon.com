@@ -30,6 +30,9 @@ export const DESK = {
  frameOffset: 4,    // 측면 프레임 X 오프셋
 } as const;
 
+const ENTRY_TO: V3 = [-20, 20, 40];
+const ENTRY_LEN = Math.hypot(...ENTRY_TO);
+
 export const CAMERA = {
  minZoom: 20,
  maxZoom: 150,
@@ -39,13 +42,43 @@ export const CAMERA = {
  maxAzimuthAngle: 1,
  smoothTime: 0.4,
  /** 진입 연출: from에서 시작해 delayMs 뒤 to로 이동 */
- entry: { from: [0, 0, 50] as V3, to: [-20, 20, 40] as V3, delayMs: 500 },
+ entry: { from: [0, 0, 50] as V3, to: ENTRY_TO, delayMs: 500 },
+
  /**
-  * 기기를 선택했을 때 카메라 타깃을 이만큼 올린다.
-  * 타깃이 화면 중앙에 오므로, 타깃을 올리면 씬 전체가 화면 아래로 내려가고
-  * 좌상단 제목·설명문 자리가 비워진다.
+  * 평상시 각도. 진입 연출이 만드는 각도를 그대로 계산해 둔다
+  * (entry.to를 바꾸면 복귀 각도도 같이 따라온다).
   */
- activeTargetLift: 0.8,
+ restAzimuth: Math.atan2(ENTRY_TO[0], ENTRY_TO[2]),
+ restPolar: Math.acos(ENTRY_TO[1] / ENTRY_LEN),
+
+ /** 기기를 선택했을 때의 정면 각도 */
+ activeAzimuth: 0,
+ activePolar: 1.3,
+
+ /**
+  * 선택 중 씬을 아래로 내리는 양 — 픽셀 기준으로 계산한다.
+  *
+  * drei의 OrthographicCamera는 프러스텀이 픽셀 단위라 1 월드 유닛 = zoom 픽셀이다.
+  * 월드 고정값을 쓰면 창이 넓어져 줌이 커질수록 더 많이 내려가 버린다.
+  * 그래서 "제목·설명문 아래와 히어로 하단 사이의 한가운데"를 픽셀로 정하고,
+  * 그때그때 zoom으로 나눠 월드 단위로 환산한다.
+  */
+ activeFocus: {
+ /** 좌상단 제목+설명문이 쓰는 높이(px). 이 아래부터 씬이 놓인다 */
+ textReservePx: 250,
+ /** 히어로가 차지하는 화면 비율 — ProjectList의 pt-[75vh]와 맞춘다 */
+ heroHeightRatio: 0.75,
+ /**
+  * 씬에서 가장 높이 뜬 요소(떠 있는 UI 카드)가 포커스 타깃보다 위에 있는
+  * 정도(월드 단위). 겹침을 만드는 건 선택한 기기가 아니라 이 카드들이라,
+  * 이만큼을 텍스트 아래로 밀어내야 한다.
+  */
+ sceneTopAboveTarget: 2.8,
+ /** 타깃 아래로 기기가 차지하는 정도(월드 단위). 히어로 하단 여유로 쓴다 */
+ bottomReserveWorld: 1.2,
+ },
+ /** 선택 중 줌 배율. 기기별 미세 조정은 각 focus.zoom으로 한다 */
+ activeZoomScale: 1,
 } as const;
 
 // ──────────────────────── 기기 ────────────────────────
@@ -104,7 +137,7 @@ export const DEVICES: Record<string, DeviceLayout> = {
  rotation: [0, 0, 0],
  tilt: [0, 0, 0],
  selectedY: 0.2,
- focus: { target: [0, 1.4, -1.0], zoom: 110 },
+ focus: { target: [0, 1.4, -1.0], zoom: 85 },
  },
 
  headphone: {

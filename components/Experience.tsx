@@ -274,11 +274,39 @@ const SceneContent: React.FC<SceneContentProps> = ({ currentProjectId, onProject
           const scaleFactor = Math.min(1, Math.max(0.4, effectiveWidth / 1200));
           const responsiveZoom = zoom * scaleFactor;
 
-          // 선택 중에는 타깃을 올려 씬을 아래로 내린다 (상단 텍스트 가독성)
-          controlsRef.current.setTarget(target[0], target[1] + CAMERA.activeTargetLift, target[2], true);
-          controlsRef.current.zoomTo(responsiveZoom, true);
+          const { textReservePx, heroHeightRatio, sceneTopAboveTarget, bottomReserveWorld } = CAMERA.activeFocus;
+          const viewportH = window.innerHeight;
+          const heroBottomPx = viewportH * heroHeightRatio;
+          const centerPx = viewportH / 2;
+
+          // 텍스트 아래부터 히어로 하단까지가 씬이 쓸 수 있는 띠다.
+          // 씬이 세로로 차지하는 양(가장 높이 뜬 카드 + 기기 아래쪽)이 이 띠에
+          // 들어가도록 줌을 먼저 제한한다. 창이 짧으면 조금 물러나는 셈이다.
+          const bandPx = Math.max(heroBottomPx - textReservePx, 1);
+          const neededWorld = sceneTopAboveTarget + bottomReserveWorld;
+          const activeZoom = Math.min(
+            responsiveZoom * CAMERA.activeZoomScale,
+            bandPx / neededWorld
+          );
+
+          // 그 다음 내리는 양을 정한다 (px로 재고 월드로 환산).
+          //  (1) 기기를 띠 한가운데에
+          const bandLiftPx = (textReservePx + heroBottomPx) / 2 - centerPx;
+          //  (2) 가장 높이 뜬 카드가 텍스트 아래로 내려오게
+          const clearanceLiftPx = textReservePx + sceneTopAboveTarget * activeZoom - centerPx;
+          //  (3) 기기가 히어로 하단 밖으로 밀려나지 않는 선까지만
+          const maxLiftPx = heroBottomPx - bottomReserveWorld * activeZoom - centerPx;
+
+          const liftPx = Math.min(Math.max(bandLiftPx, clearanceLiftPx, 0), Math.max(maxLiftPx, 0));
+          const liftWorld = liftPx / activeZoom;
+
+          // 선택 중에는 정면으로 돌고, 씬을 내려 좌상단 텍스트 자리를 비운다
+          controlsRef.current.rotateTo(CAMERA.activeAzimuth, CAMERA.activePolar, true);
+          controlsRef.current.setTarget(target[0], target[1] + liftWorld, target[2], true);
+          controlsRef.current.zoomTo(activeZoom, true);
         } else {
-          // Reset to default view
+          // 선택 해제 — 각도까지 평상시 상태로 되돌린다
+          controlsRef.current.rotateTo(CAMERA.restAzimuth, CAMERA.restPolar, true);
           controlsRef.current.setTarget(0, 0, 0, true);
 
           // Return to responsive zoom level
