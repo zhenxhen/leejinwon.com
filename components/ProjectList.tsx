@@ -40,9 +40,6 @@ export const ProjectList: React.FC<ProjectListProps> = ({ onProjectClick }) => {
     <span className="subtext">{project.year}</span>
     </div>
     <p className="subtext text-gray-500">{project.category}</p>
-    {project.medium && (
-     <p className="subtext text-gray-400">{project.medium}</p>
-    )}
    </div>
    </div>
   ))}
