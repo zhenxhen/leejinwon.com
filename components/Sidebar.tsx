@@ -59,7 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activePage }) => {
                     <h1 className="subtitle">
                         Jinwon Lee
                     </h1>
-                    <p className="subtext mt-1">System Designer <br /> & Creative Technologists<br />London, Seoul</p>
+                    <p className="subtext mt-1">Product Designer <br /> & New Media Artist<br />London, Seoul</p>
                 </div>
 
                 {/* Navigation */}
